@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace LR.SLG
+namespace ST.SLG
 {
     /// <summary>
     /// 

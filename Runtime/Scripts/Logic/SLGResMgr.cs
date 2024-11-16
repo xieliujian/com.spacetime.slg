@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-namespace LR.SLG
+namespace ST.SLG
 {
     /// <summary>
     /// 

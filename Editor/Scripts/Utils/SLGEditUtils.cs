@@ -6,7 +6,7 @@ using System;
 using UnityEditor.Tilemaps;
 using UnityEngine.Tilemaps;
 
-namespace LR.SLG
+namespace ST.SLG
 {
     /// <summary>
     /// 

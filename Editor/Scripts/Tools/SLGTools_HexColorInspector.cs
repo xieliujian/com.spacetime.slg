@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-namespace LR.SLG
+namespace ST.SLG
 {
     /// <summary>
     /// 

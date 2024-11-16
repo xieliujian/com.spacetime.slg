@@ -8,7 +8,7 @@ using System.IO;
 using OfficeOpenXml;
 #endif
 
-namespace LR.SLG
+namespace ST.SLG
 {
     /// <summary>
     /// 

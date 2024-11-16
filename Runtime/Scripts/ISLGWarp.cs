@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using static LR.SLG.SLGDefine;
+using static ST.SLG.SLGDefine;
 
-namespace LR.SLG
+namespace ST.SLG
 {
 	/// <summary>
 	/// 
