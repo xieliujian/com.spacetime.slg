@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using ST.Core.Debugger;
 
 namespace ST.SLG
 {
@@ -158,7 +159,7 @@ namespace ST.SLG
             var layerNum = renderLayerCfgList.Count;
             if (renderLayerCfgList == null || layerNum <= 0)
             {
-                Debug.LogError($"[SLG][CreateAllRenderLayer] : renderLayerCfgList 不存在");
+                Debugger.LogError("[SLG][CreateAllRenderLayer] : renderLayerCfgList 不存在");
                 return;
             }
 

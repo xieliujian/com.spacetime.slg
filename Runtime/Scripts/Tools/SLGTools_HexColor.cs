@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ST.Core.Debugger;
 
 namespace ST.SLG
 {
@@ -58,8 +59,8 @@ namespace ST.SLG
                 revertInfo += $"[{mat.name}] [Color] {outColor}\n";
             }
 
-            Debug.LogError(dumpInfo);
-            Debug.LogError(revertInfo);
+            Debugger.LogError(dumpInfo);
+            Debugger.LogError(revertInfo);
         }
     }
 }

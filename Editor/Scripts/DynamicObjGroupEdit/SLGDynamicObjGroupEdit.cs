@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ST.Core.Debugger;
 
 namespace ST.SLG
 {
@@ -19,7 +19,7 @@ namespace ST.SLG
             var globalGo = SLGUtils.FindGlobalRoot();
             if (globalGo == null)
             {
-                Debug.LogError("[SLG]不能创建场景动态物件组");
+                Debugger.LogError("[SLG]不能创建场景动态物件组");
                 return;
             }
 

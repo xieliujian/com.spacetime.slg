@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using ST.Core.Debugger;
 
 namespace ST.SLG
 {
@@ -146,9 +147,9 @@ namespace ST.SLG
                 }
                 catch
                 {
-                    Debug.LogError($"[SceneStreamerSLG][FillDynamicMapRenderLayer] [childName]({child.name})");
+                    Debugger.LogErrorF("[SceneStreamerSLG][FillDynamicMapRenderLayer] [childName]({0})", child.name);
                 }
-
+                
                 if (dynamicMapIndex <= 0)
                     continue;
 

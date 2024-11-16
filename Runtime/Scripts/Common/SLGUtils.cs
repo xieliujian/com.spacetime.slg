@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.Collections;
 using UnityEngine;
+using ST.Core.Debugger;
 
 namespace ST.SLG
 {
@@ -199,7 +200,7 @@ namespace ST.SLG
             var uvArray = mesh.uv;
             if (uvArray == null || uvArray.Length != 4)
             {
-                Debug.Log($"[SLG][CalcUVScaleOffsetByMesh] 模型顶点数目不为4 {mesh.name}");
+                Debugger.LogDebugF("[SLG][CalcUVScaleOffsetByMesh] 模型顶点数目不为4 {0}", mesh.name);
                 return Vector4.zero;
             }
 

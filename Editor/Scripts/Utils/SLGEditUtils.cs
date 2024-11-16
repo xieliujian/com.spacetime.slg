@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using UnityEditor.Tilemaps;
 using UnityEngine.Tilemaps;
+using ST.Core.Debugger;
 
 namespace ST.SLG
 {
@@ -79,7 +80,7 @@ namespace ST.SLG
         /// <param name="assetsPath"></param>
         public static void SafeRemoveAsset(string assetsPath)
         {
-            Debug.Log("SafeRemoveAsset " + assetsPath);
+            Debugger.LogDebugF("[SLG] SafeRemoveAsset {0}", assetsPath);
 
             UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetsPath);
 
