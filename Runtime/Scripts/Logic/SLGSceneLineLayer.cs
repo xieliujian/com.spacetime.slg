@@ -223,7 +223,7 @@ namespace ST.SLG
                 m_BlockList.Add(block);
 
                 findBlock = block;
-                matrixIndex = 0;
+                matrixIndex = findBlock.GetEmptyIndex();
                 globalIndex = SLGSceneLineBlock.SLG_LINE_BLOCK_MATRIX_NUM * (m_BlockList.Count - 1) + matrixIndex;
             }
 
