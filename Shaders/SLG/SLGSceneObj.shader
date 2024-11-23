@@ -73,11 +73,11 @@
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
-            #include "SLGSceneObjInclude.hlsl"
-            #include "SLGSceneObjCommon.hlsl"
-            #include "SLGSceneObjShadow.hlsl"
-            #include "SLGSceneObjLighting.hlsl"
-            #include "SLGSceneObjForwardPass.hlsl"
+            #include "SLGSceneObj/SLGSceneObjInclude.hlsl"
+            #include "SLGSceneObj/SLGSceneObjCommon.hlsl"
+            #include "SLGSceneObj/SLGSceneObjShadow.hlsl"
+            #include "SLGSceneObj/SLGSceneObjLighting.hlsl"
+            #include "SLGSceneObj/SLGSceneObjForwardPass.hlsl"
 
             #pragma vertex SLGSceneObjVert
             #pragma fragment SLGSceneObjFrag

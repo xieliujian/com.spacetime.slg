@@ -44,8 +44,8 @@ half3 CalcMainLightMixed(float3 finalColor, Light mainLight, InputData inputData
 {    
     half clamplightAttenuation = mainLight.shadowAttenuation * mainLight.distanceAttenuation;
     half NdotL = saturate(dot(inputData.normalWS, mainLight.direction));
-    clamplightAttenuation = clamp(clamplightAttenuation + _MainLightShaderParam.z, _MainLightShaderParam.x, 1);
     
+    //clamplightAttenuation = clamp(clamplightAttenuation + _MainLightShaderParam.z, _MainLightShaderParam.x, 1);   
     //half3 radiance = mainLight.color * (clamplightAttenuation * NdotL); // +(1 - clamplightAttenuation * NdotL) * _MainLightShadowColor.rgb;
     half3 radiance = clamplightAttenuation;
     

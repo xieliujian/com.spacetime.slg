@@ -46,10 +46,10 @@
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
-            #include "SLGSceneLineInclude.hlsl"
-            #include "SLGSceneLineCommon.hlsl"
-            #include "SLGSceneLineLighting.hlsl"
-            #include "SLGSceneLineForwardPass.hlsl"
+            #include "SLGSceneLine/SLGSceneLineInclude.hlsl"
+            #include "SLGSceneLine/SLGSceneLineCommon.hlsl"
+            #include "SLGSceneLine/SLGSceneLineLighting.hlsl"
+            #include "SLGSceneLine/SLGSceneLineForwardPass.hlsl"
 
             #pragma vertex SLGSceneLineVert
             #pragma fragment SLGSceneLineFrag
