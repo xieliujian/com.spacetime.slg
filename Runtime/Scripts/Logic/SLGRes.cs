@@ -133,8 +133,8 @@ namespace ST.SLG
                 m_Mat.enableInstancing = true;
             }
 
-            m_Mat.SetFloat(SLGDefine.SLG_SHADER_SCENEOBJ_ZTEST_ID, (float)UnityEngine.Rendering.CompareFunction.Always);
-            m_Mat.SetFloat(SLGDefine.SLG_SHADER_SCENEOBJ_ZWRITE_ID, m_ResDB.zWriteOn ? 1 : 0);
+            m_Mat.SetFloat(SLGDefine.s_SLG_Shader_SceneObj_ZTestId, (float)UnityEngine.Rendering.CompareFunction.Always);
+            m_Mat.SetFloat(SLGDefine.s_SLG_Shader_SceneObj_ZWriteId, m_ResDB.zWriteOn ? 1 : 0);
 
             m_Mat.renderQueue = m_ResDB.renderQueue;
         }

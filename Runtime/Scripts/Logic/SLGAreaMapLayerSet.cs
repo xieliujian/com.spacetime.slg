@@ -7,45 +7,45 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 区域静态地图图层集合，管理一个区域内所有静态地图图层的生命周期与渲染。
     /// </summary>
     public class SLGAreaMapLayerSet
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGResMgr m_ResMgr;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGAreaMapLayerSetDB m_AreaMapLayerSetDB;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         List<SLGAreaMapLayer> m_LayerList = new List<SLGAreaMapLayer>();
 
         /// <summary>
-        /// 
+        /// 设置资源管理器。
         /// </summary>
-        /// <param name="resMgr"></param>
+        /// <param name="resMgr">资源管理器实例。</param>
         public void SetResMgr(SLGResMgr resMgr)
         {
             m_ResMgr = resMgr;
         }
 
         /// <summary>
-        /// 
+        /// 设置地图图层集合的数据库配置。
         /// </summary>
-        /// <param name="areaMapLayerSetDB"></param>
+        /// <param name="areaMapLayerSetDB">地图图层集合数据库对象。</param>
         public void SetAreaMapLayerSetDB(SLGAreaMapLayerSetDB areaMapLayerSetDB)
         {
             m_AreaMapLayerSetDB = areaMapLayerSetDB;
         }
 
         /// <summary>
-        /// 
+        /// 初始化图层集合，根据数据库配置创建所有静态地图图层。
         /// </summary>
         public void Init()
         {
@@ -67,7 +67,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 渲染集合内所有静态地图图层。
         /// </summary>
         public void Render()
         {
@@ -81,7 +81,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 销毁图层集合，释放所有图层资源。
         /// </summary>
         public void Destroy()
         {

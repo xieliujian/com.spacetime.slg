@@ -6,51 +6,51 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 场景资源数据库，管理共享格子资源、普通渲染资源和自定义资源的集合。
     /// </summary>
     [System.Serializable]
     public class SLGSceneResDB
     {
         /// <summary>
-        /// 
+        /// 共享格子资源数据库，所有格子共用的基础资源。
         /// </summary>
         [SerializeField]
         public SLGResDB shareGridResDB = new SLGResDB();
 
         /// <summary>
-        /// 
+        /// 普通渲染资源数据库列表，按材质路径索引。
         /// </summary>
         [SerializeField]
         public List<SLGResDB> resDBList = new List<SLGResDB>();
 
         /// <summary>
-        /// 
+        /// 自定义资源数据库列表，用于信息层等特殊资源。
         /// </summary>
         [SerializeField]
         public List<SLGResDB> customResDBList = new List<SLGResDB>();
 
         /// <summary>
-        /// 
+        /// 共享格子资源的真实路径（运行时，不序列化）。
         /// </summary>
         [NonSerialized]
         public string realShareGridResPath = "";
 
         /// <summary>
-        /// 
+        /// 普通资源的真实路径列表（运行时，不序列化）。
         /// </summary>
         [NonSerialized]
         public List<string> realResPathList = new List<string>();
 
         /// <summary>
-        /// 
+        /// 自定义资源的真实路径列表（运行时，不序列化）。
         /// </summary>
         [NonSerialized]
         public List<string> realCustomResPathList = new List<string>();
 
         /// <summary>
-        /// 
+        /// 初始化共享格子资源路径。
         /// </summary>
-        /// <param name="resPath"></param>
+        /// <param name="resPath">资源路径</param>
         public void InitShareGridRes(string resPath)
         {
             var newResPath = resPath.ToLower();
@@ -60,9 +60,12 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 添加普通渲染资源，若材质路径已存在则跳过。
         /// </summary>
-        /// <param name="res"></param>
+        /// <param name="resPath">预制体资源路径</param>
+        /// <param name="matPath">材质路径（用于去重）</param>
+        /// <param name="renderQueue">渲染队列值</param>
+        /// <param name="isZWriteOn">是否开启深度写入</param>
         public void AddRes(string resPath, string matPath, int renderQueue, bool isZWriteOn)
         {
             var newResPath = resPath.ToLower();
@@ -82,9 +85,11 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 添加自定义资源，若资源路径已存在则跳过。
         /// </summary>
-        /// <param name="resPath"></param>
+        /// <param name="resPath">资源路径</param>
+        /// <param name="renderQueue">渲染队列值</param>
+        /// <param name="isZWriteOn">是否开启深度写入</param>
         public void AddCustomRes(string resPath, int renderQueue, bool isZWriteOn)
         {
             var newResPath = resPath.ToLower();
@@ -104,10 +109,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 根据资源ID查找对应的资源数据库。
         /// </summary>
-        /// <param name="resID"></param>
-        /// <returns></returns>
+        /// <param name="resID">资源ID（即列表索引）</param>
+        /// <returns>找到则返回对应资源数据库，否则返回null</returns>
         public SLGResDB FindResByResID(int resID)
         {
             for (int i = 0; i < resDBList.Count; i++)
@@ -126,10 +131,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 根据材质路径查找对应的资源ID。
         /// </summary>
-        /// <param name="resPath"></param>
-        /// <returns></returns>
+        /// <param name="_matPath">材质路径</param>
+        /// <returns>找到则返回资源ID（列表索引），否则返回-1</returns>
         public int FindResId(string _matPath)
         {
             for (int i = 0; i < resDBList.Count; i++)
@@ -148,11 +153,6 @@ namespace ST.SLG
             return -1;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_resPath"></param>
-        /// <returns></returns>
         bool IsExistCustomRes(string _resPath)
         {
             foreach (var res in customResDBList)
@@ -167,11 +167,6 @@ namespace ST.SLG
             return false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="resPath"></param>
-        /// <returns></returns>
         bool IsExistRes(string _matPath)
         {
             foreach (var res in resDBList)

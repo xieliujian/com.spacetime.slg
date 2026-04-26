@@ -6,70 +6,70 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 区域地图渲染块，负责单个地图块的 GPU 实例化渲染。
     /// </summary>
     public class SLGAreaMapBlock
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGAreaMapBlockDB m_RenderBlockDB;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mesh m_Mesh;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Material m_Mat;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected MaterialPropertyBlock m_MatPropBlock = new MaterialPropertyBlock();
 
         /// <summary>
-        /// 
+        /// 设置渲染块的数据库配置。
         /// </summary>
-        /// <param name="blockDB"></param>
+        /// <param name="blockDB">地图块数据库对象。</param>
         public void SetRenderBlockDB(SLGAreaMapBlockDB blockDB)
         {
             m_RenderBlockDB = blockDB;
         }
 
         /// <summary>
-        /// 
+        /// 设置渲染使用的网格。
         /// </summary>
-        /// <param name="mesh"></param>
+        /// <param name="mesh">目标网格。</param>
         public void SetMesh(Mesh mesh)
         {
             m_Mesh = mesh;
         }
 
         /// <summary>
-        /// 
+        /// 设置渲染使用的材质。
         /// </summary>
-        /// <param name="mat"></param>
+        /// <param name="mat">目标材质。</param>
         public void SetMat(Material mat)
         {
             m_Mat = mat;
         }
 
         /// <summary>
-        /// 
+        /// 初始化渲染块，将 UV 缩放偏移数据写入材质属性块。
         /// </summary>
         public void Init()
         {
             if (m_RenderBlockDB != null && m_RenderBlockDB.uvScaleOffsetList != null)
             {
-                m_MatPropBlock.SetVectorArray(SLGDefine.SLG_SHADER_SCENEOBJ_UV_SCALE_OFFSET_ID, m_RenderBlockDB.uvScaleOffsetList);
+                m_MatPropBlock.SetVectorArray(SLGDefine.s_SLG_Shader_SceneObj_UvScaleOffsetId, m_RenderBlockDB.uvScaleOffsetList);
             }
         }
 
         /// <summary>
-        /// 
+        /// 销毁渲染块，释放材质属性块及引用资源。
         /// </summary>
         public void Destroy()
         {
@@ -79,7 +79,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 执行当前帧的 GPU 实例化渲染。
         /// </summary>
         public void Render()
         {

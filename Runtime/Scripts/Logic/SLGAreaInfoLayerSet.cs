@@ -6,73 +6,73 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 区域信息图层集合，管理一个区域内所有信息图层（网格图层、属性图层）的生命周期与渲染。
     /// </summary>
     public class SLGAreaInfoLayerSet
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGResMgr m_ResMgr;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         int m_AreaIndex;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGAreaInfoLayerSetDB m_AreaInfoLayerSetDB;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGAreaGridSetDB m_AreaGridSetDB;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Dictionary<int, SLGAreaInfoLayer> m_AreaLayerDict = new Dictionary<int, SLGAreaInfoLayer>();
 
         /// <summary>
-        /// 
+        /// 设置资源管理器。
         /// </summary>
-        /// <param name="resMgr"></param>
+        /// <param name="resMgr">资源管理器实例。</param>
         public void SetResMgr(SLGResMgr resMgr)
         {
             m_ResMgr = resMgr;
         }
 
         /// <summary>
-        /// 
+        /// 设置当前区域索引，用于属性图层定位数据。
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">区域索引。</param>
         public void SetAreaIndex(int index)
         {
             m_AreaIndex = index;
         }
 
         /// <summary>
-        /// 
+        /// 设置信息图层集合的数据库配置。
         /// </summary>
-        /// <param name="infoLayerSetDB"></param>
+        /// <param name="areaInfoLayerSetDB">信息图层集合数据库对象。</param>
         public void SetAreaInfoLayerSetDB(SLGAreaInfoLayerSetDB areaInfoLayerSetDB)
         {
             m_AreaInfoLayerSetDB = areaInfoLayerSetDB;
         }
 
         /// <summary>
-        /// 
+        /// 设置区域网格集合数据库，供网格信息图层使用。
         /// </summary>
-        /// <param name="areaGridDB"></param>
+        /// <param name="areaGridSetDB">区域网格集合数据库对象。</param>
         public void SetAreaGridSetDB(SLGAreaGridSetDB areaGridSetDB)
         {
             m_AreaGridSetDB = areaGridSetDB;
         }
 
         /// <summary>
-        /// 
+        /// 初始化图层集合，根据数据库配置创建所有信息图层。
         /// </summary>
         public void Init()
         {
@@ -80,7 +80,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 渲染集合内所有信息图层。
         /// </summary>
         public void Render()
         {
@@ -95,7 +95,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 销毁图层集合，释放所有信息图层资源。
         /// </summary>
         public void Destroy()
         {
@@ -112,10 +112,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 根据图层 ID 查找对应的信息图层。
         /// </summary>
-        /// <param name="layerType"></param>
-        /// <returns></returns>
+        /// <param name="layerID">图层 ID。</param>
+        /// <returns>对应的信息图层，不存在则返回 null。</returns>
         public SLGAreaInfoLayer FindAreaInfoLayer(int layerID)
         {
             SLGAreaInfoLayer block = null;

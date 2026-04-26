@@ -329,8 +329,8 @@ namespace ST.SLG
 
             m_Dirty = false;
 
-            m_MatPropBlock.SetFloatArray(SLGDefine.SLG_SHADER_SCENELINE_ENEMY_ID, m_EnemyPropList);
-            m_MatPropBlock.SetVectorArray(SLGDefine.SLG_SHADER_SCENELINE_UV_SCALE_OFFSET_ID, m_UVScaleOffsetPropList);
+            m_MatPropBlock.SetFloatArray(SLGDefine.s_SLG_Shader_SceneLine_EnemyId, m_EnemyPropList);
+            m_MatPropBlock.SetVectorArray(SLGDefine.s_SLG_Shader_SceneLine_UvScaleOffsetId, m_UVScaleOffsetPropList);
         }
     }
 }

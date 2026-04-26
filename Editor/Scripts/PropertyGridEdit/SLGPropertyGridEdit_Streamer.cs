@@ -120,9 +120,9 @@ namespace ST.SLG
         /// </summary>
         static void CalcAllPropertyGrid(SLGSceneDB sceneDB)
         {
-            for (int j = 1; j <= SLGDefine.SLG_GRID_VERTICAL_NUM; j++)
+            for (int j = 1; j <= SLGDefine.s_SLG_Grid_VerticalNum; j++)
             {
-                for (int i = 1; i <= SLGDefine.SLG_GRID_HORIZONTAL_NUM; i++)
+                for (int i = 1; i <= SLGDefine.s_SLG_Grid_HorizontalNum; i++)
                 {
                     Vector2Int propPos = new Vector2Int(i, j);
 

@@ -49,7 +49,7 @@ namespace ST.SLG
                 if (mat == null)
                     continue;
 
-                var color = mat.GetColor(SLGDefine.SLG_SHADER_SCENEOBJ_BASECOLOR_ID);
+                var color = mat.GetColor(SLGDefine.s_SLG_Shader_SceneObj_BaseColorId);
 
                 var htmlColor = $"#{ColorUtility.ToHtmlStringRGBA(color)}";
                 dumpInfo += $"[{mat.name}] [Color] {htmlColor}\n";

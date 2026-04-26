@@ -87,7 +87,7 @@ namespace ST.SLG
             if (m_PropertyInfoBlockDB == null)
                 return;
 
-            m_MatPropBlock.SetVectorArray(SLGDefine.SLG_SHADER_SCENEOBJ_UV_SCALE_OFFSET_ID,
+            m_MatPropBlock.SetVectorArray(SLGDefine.s_SLG_Shader_SceneObj_UvScaleOffsetId,
                     m_PropertyInfoBlockDB.uvScaleOffsetList);
         }
 

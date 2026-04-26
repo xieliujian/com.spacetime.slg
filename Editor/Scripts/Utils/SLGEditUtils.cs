@@ -269,7 +269,7 @@ namespace ST.SLG
             if (grid == null)
                 return;
 
-            grid.cellSize = new Vector3(SLGDefine.SLG_GRID_UNIT_SIZE, SLGDefine.SLG_GRID_UNIT_SIZE, 0);
+            grid.cellSize = new Vector3(SLGDefine.s_SLG_Grid_UnitSize, SLGDefine.s_SLG_Grid_UnitSize, 0);
             grid.cellLayout = GridLayout.CellLayout.Rectangle;
             grid.cellSwizzle = GridLayout.CellSwizzle.XZY;
         }

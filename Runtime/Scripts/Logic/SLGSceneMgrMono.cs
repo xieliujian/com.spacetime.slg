@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// The script execution order is after the camera refresh.
+    /// SLG场景管理器的MonoBehaviour包装，脚本执行顺序在摄像机刷新之后。
     /// </summary>
     public class SLGSceneMgrMono : MonoBehaviour
     {

@@ -6,47 +6,47 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 区域动态地图图层，管理单个动态地图图层下所有地图块的初始化与渲染。
     /// </summary>
     public class SLGAreaDynamicMapLayer : SLGAreaLayer
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGResMgr m_ResMgr;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGAreaDynamicMapLayerDB m_AreaDynamicMapDB;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         List<SLGAreaMapBlock> m_BlockList = new List<SLGAreaMapBlock>();
 
         /// <summary>
-        /// 
+        /// 设置资源管理器。
         /// </summary>
-        /// <param name="resMgr"></param>
+        /// <param name="resMgr">资源管理器实例。</param>
         public void SetResMgr(SLGResMgr resMgr)
         {
             m_ResMgr = resMgr;
         }
 
         /// <summary>
-        /// 
+        /// 设置动态地图图层的数据库配置。
         /// </summary>
-        /// <param name="areaDB"></param>
+        /// <param name="areaDynamicMapDB">动态地图图层数据库对象。</param>
         public void SetAreaDynamicMapDB(SLGAreaDynamicMapLayerDB areaDynamicMapDB)
         {
             m_AreaDynamicMapDB = areaDynamicMapDB;
         }
 
         /// <summary>
-        /// 
+        /// 获取当前动态地图图层的索引 ID。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>图层 ID，若未设置则返回 -1。</returns>
         public override int GetLayerIndex()
         {
             if (m_AreaDynamicMapDB == null)
@@ -56,7 +56,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 初始化动态地图图层，根据数据库配置创建所有地图块。
         /// </summary>
         public void Init()
         {
@@ -83,7 +83,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 渲染图层内所有地图块。
         /// </summary>
         public override void Render()
         {
@@ -97,7 +97,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 销毁图层，释放所有地图块资源。
         /// </summary>
         public void Destroy()
         {
@@ -114,62 +114,62 @@ namespace ST.SLG
     }
 
     /// <summary>
-    /// 
+    /// 区域动态地图图层集合，根据场景当前动态地图索引切换并渲染对应图层。
     /// </summary>
     public class SLGAreaDynamicMapLayerSet
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGResMgr m_ResMgr;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGAreaDynamicMapLayerSetDB m_DynamicMapSetDB;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SLGScene m_Scene;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Dictionary<int, SLGAreaDynamicMapLayer> m_DynamicMapDict = new Dictionary<int, SLGAreaDynamicMapLayer>();
 
         /// <summary>
-        /// 
+        /// 设置资源管理器。
         /// </summary>
-        /// <param name="resMgr"></param>
+        /// <param name="resMgr">资源管理器实例。</param>
         public void SetResMgr(SLGResMgr resMgr)
         {
             m_ResMgr = resMgr;
         }
 
         /// <summary>
-        /// 
+        /// 设置动态地图图层集合的数据库配置。
         /// </summary>
-        /// <param name="areaDB"></param>
+        /// <param name="areaDynamicMapSetDB">动态地图图层集合数据库对象。</param>
         public void SetAreaDynamicMapSetDB(SLGAreaDynamicMapLayerSetDB areaDynamicMapSetDB)
         {
             m_DynamicMapSetDB = areaDynamicMapSetDB;
         }
 
         /// <summary>
-        /// 
+        /// 设置场景引用，用于获取当前动态地图索引。
         /// </summary>
-        /// <param name="scene"></param>
+        /// <param name="scene">场景对象。</param>
         public void SetScene(SLGScene scene)
         {
             m_Scene = scene;
         }
 
         /// <summary>
-        /// 
+        /// 根据索引查找对应的动态地图图层。
         /// </summary>
-        /// <param name="dynamicMapIndex"></param>
-        /// <returns></returns>
+        /// <param name="dynamicMapIndex">动态地图索引。</param>
+        /// <returns>对应的动态地图图层，不存在则返回 null。</returns>
         public SLGAreaDynamicMapLayer FindAreaDynamicMap(int dynamicMapIndex)
         {
             SLGAreaDynamicMapLayer dynamicMap = null;
@@ -178,7 +178,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 初始化动态地图图层集合，根据数据库配置创建所有动态地图图层。
         /// </summary>
         public void Init()
         {
@@ -205,7 +205,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 渲染场景当前动态地图索引对应的图层。
         /// </summary>
         public void Render()
         {
@@ -217,7 +217,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 销毁动态地图图层集合，释放所有图层资源。
         /// </summary>
         public void Destroy()
         {
