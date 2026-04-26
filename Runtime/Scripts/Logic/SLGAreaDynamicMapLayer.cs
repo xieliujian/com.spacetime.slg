@@ -10,19 +10,10 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaDynamicMapLayer : SLGAreaLayer
     {
-        /// <summary>
-        ///
-        /// </summary>
         SLGResMgr m_ResMgr;
 
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaDynamicMapLayerDB m_AreaDynamicMapDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         List<SLGAreaMapBlock> m_BlockList = new List<SLGAreaMapBlock>();
 
         /// <summary>
@@ -118,24 +109,12 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaDynamicMapLayerSet
     {
-        /// <summary>
-        ///
-        /// </summary>
         SLGResMgr m_ResMgr;
 
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaDynamicMapLayerSetDB m_DynamicMapSetDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         SLGScene m_Scene;
 
-        /// <summary>
-        ///
-        /// </summary>
         Dictionary<int, SLGAreaDynamicMapLayer> m_DynamicMapDict = new Dictionary<int, SLGAreaDynamicMapLayer>();
 
         /// <summary>
@@ -234,4 +213,3 @@ namespace ST.SLG
         }
     }
 }
-

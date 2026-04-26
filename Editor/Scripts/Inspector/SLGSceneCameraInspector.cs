@@ -6,28 +6,19 @@ using UnityEditor;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// <see cref="SLGSceneCamera"/> 的自定义 Inspector：非播放模式下提供 WASD/滚轮模拟按钮。
     /// </summary>
     [CustomEditor(typeof(SLGSceneCamera))]
     public class SLGSceneCameraInspector : Editor
     {
-        /// <summary>
-        /// 
-        /// </summary>
         const float SCROLL_UNIT = 0.01f;
 
-        /// <summary>
-        /// 
-        /// </summary>
         const float VERTICAL_UNIT = 0.1f;
 
-        /// <summary>
-        /// 
-        /// </summary>
         const float HORIZONTAL_UNIT = 0.1f;
 
         /// <summary>
-        /// 
+        /// 绘制运行提示、编辑器移动按钮并绘制默认序列化字段。
         /// </summary>
         public override void OnInspectorGUI()
         {
@@ -52,9 +43,6 @@ namespace ST.SLG
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void DrawMouseWheel(SLGSceneCamera script)
         {
             bool isWheel = false;
@@ -83,9 +71,6 @@ namespace ST.SLG
             EditorGUILayout.EndVertical();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void DrawWADS(SLGSceneCamera script)
         {
             bool isHorizontal = false;
@@ -137,4 +122,3 @@ namespace ST.SLG
         }
     }
 }
-

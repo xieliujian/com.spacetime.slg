@@ -9,19 +9,10 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaMapLayer : SLGAreaLayer
     {
-        /// <summary>
-        ///
-        /// </summary>
         SLGResMgr m_ResMgr;
 
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaMapLayerDB m_AreaMapLayerDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         List<SLGAreaMapBlock> m_BlockList = new List<SLGAreaMapBlock>();
 
         /// <summary>
@@ -112,4 +103,3 @@ namespace ST.SLG
         }
     }
 }
-

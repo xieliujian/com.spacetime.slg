@@ -10,49 +10,22 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaInfoLayer : SLGAreaLayer
     {
-        /// <summary>
-        ///
-        /// </summary>
         protected SLGAreaInfoLayerDB m_InfoLayerDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         protected Mesh m_Mesh;
 
-        /// <summary>
-        ///
-        /// </summary>
         protected Material m_Mat;
 
-        /// <summary>
-        ///
-        /// </summary>
         protected Matrix4x4 m_InitScaleMatrix = Matrix4x4.identity;
 
-        /// <summary>
-        ///
-        /// </summary>
         protected MaterialPropertyBlock m_MatPropBlock = new MaterialPropertyBlock();
 
-        /// <summary>
-        ///
-        /// </summary>
         protected List<Matrix4x4> m_MatrixList = new List<Matrix4x4>();
 
-        /// <summary>
-        ///
-        /// </summary>
         protected List<Vector4> m_ColorList = new List<Vector4>();
 
-        /// <summary>
-        ///
-        /// </summary>
         protected bool m_Dirty = false;
 
-        /// <summary>
-        ///
-        /// </summary>
         protected bool m_Render = true;
 
         /// <summary>

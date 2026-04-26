@@ -10,9 +10,6 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaGridInfoLayer : SLGAreaInfoLayer
     {
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaGridSetDB m_AreaGridSetDB;
 
         /// <summary>
@@ -179,4 +176,3 @@ namespace ST.SLG
         }
     }
 }
-

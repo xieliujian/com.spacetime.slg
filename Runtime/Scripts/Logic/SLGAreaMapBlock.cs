@@ -10,24 +10,12 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaMapBlock
     {
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaMapBlockDB m_RenderBlockDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         Mesh m_Mesh;
 
-        /// <summary>
-        ///
-        /// </summary>
         Material m_Mat;
 
-        /// <summary>
-        ///
-        /// </summary>
         protected MaterialPropertyBlock m_MatPropBlock = new MaterialPropertyBlock();
 
         /// <summary>
@@ -95,4 +83,3 @@ namespace ST.SLG
         }
     }
 }
-

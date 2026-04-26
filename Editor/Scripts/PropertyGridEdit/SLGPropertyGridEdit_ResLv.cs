@@ -6,36 +6,19 @@ using ST.Core.Debugger;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// SLG 属性网格编辑器：资源等级属性层、场景与区域数据填充（分部类）。
     /// </summary>
     public partial class SLGPropertyGridEdit
     {
-        /// <summary>
-        /// 
-        /// </summary>
         const string SLG_RES_LV_PROPERTY_PREFAB_PREFIX = "slg_reslvproperty_";
 
-        /// <summary>
-        /// 
-        /// </summary>
         const string SLG_EDITLAYER_RES_LV_PROPERTY_NODE_NAME = "ResLvPropertyLayer";
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rootGo"></param>
-        /// <param name="layerIndex"></param>
         static void CreateResLvPropertyLayer(GameObject rootGo, int layerIndex)
         {
             SLGEditUtils.CreateSLGLayer(rootGo, SLG_EDITLAYER_RES_LV_PROPERTY_NODE_NAME, layerIndex);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sceneDB"></param>
-        /// <param name="obj"></param>
-        /// <param name="propPos"></param>
         static void FillSceneResLvPropertyInfo(SLGSceneDB sceneDB, GameObject obj, Vector2Int propPos)
         {
             var propertyDB = sceneDB.GetOrCreatePropertyGridDB(propPos);
@@ -60,11 +43,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="areaSetDB"></param>
-        /// <param name="layer"></param>
         static void FillAreaResLvStateLayer(SLGSceneDB sceneDB, SLGAreaSetDB areaSetDB, SLGAreaPropertyInfoLayerDB layer)
         {
             var areaDBList = areaSetDB.areaDBList;
@@ -120,4 +98,3 @@ namespace ST.SLG
         }
     }
 }
-

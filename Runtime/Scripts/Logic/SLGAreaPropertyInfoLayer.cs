@@ -5,45 +5,36 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 区域属性信息图层，从属性数据库中解析当前区域的数据块，生成 UV 与实例矩阵并参与 GPU 实例化渲染（如资源等级状态层）。
     /// </summary>
     public class SLGAreaPropertyInfoLayer : SLGAreaInfoLayer
     {
-        /// <summary>
-        /// 
-        /// </summary>
         int m_AreaIndex;
 
-        /// <summary>
-        /// 
-        /// </summary>
         SLGAreaPropertyInfoLayerDB m_PropertyInfoLayerDB;
 
-        /// <summary>
-        /// 
-        /// </summary>
         SLGAreaPropertyInfoBlockDB m_PropertyInfoBlockDB;
 
         /// <summary>
-        /// 
+        /// 设置当前区域在区域集内的索引，用于从属性层数据库的块列表中选取本区域数据。
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">区域索引（0 起）。</param>
         public void SetAreaIndex(int index)
         {
             m_AreaIndex = index;
         }
 
         /// <summary>
-        /// 
+        /// 设置区域属性信息图层的数据库配置。
         /// </summary>
-        /// <param name="infoLayerDB"></param>
+        /// <param name="propertyLayerDB">区域属性信息图层数据库对象。</param>
         public void SetAreaPropertyInfoLayerDB(SLGAreaPropertyInfoLayerDB propertyLayerDB)
         {
             m_PropertyInfoLayerDB = propertyLayerDB;
         }
 
         /// <summary>
-        /// 
+        /// 初始化图层，解析本区域数据块并写入材质属性块所需的 UV 数组。
         /// </summary>
         public override void Init()
         {
@@ -54,7 +45,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 销毁图层，释放资源并调用基类逻辑。
         /// </summary>
         public override void Destroy()
         {
@@ -62,7 +53,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 在需要显示时，使用本区域矩阵列表与材质属性块进行 GPU 实例化绘制。
         /// </summary>
         public override void Render()
         {
@@ -79,9 +70,6 @@ namespace ST.SLG
                     m_MatPropBlock, UnityEngine.Rendering.ShadowCastingMode.Off, false);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitMatPropBlock()
         {
             if (m_PropertyInfoBlockDB == null)
@@ -91,9 +79,6 @@ namespace ST.SLG
                     m_PropertyInfoBlockDB.uvScaleOffsetList);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitPropertyInfoBlockDB()
         {
             if (m_PropertyInfoLayerDB == null)

@@ -6,14 +6,14 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// SLG 属性网格编辑器流式导出（分部类），将场景中的属性节点写入 <see cref="SLGSceneDB"/> 并同步区域属性层数据。
     /// </summary>
     public partial class SLGPropertyGridEdit
     {
         /// <summary>
-        /// 
+        /// 流式导出：填充属性层场景数据、重算全图属性格，并将各区域属性层写入场景数据库。
         /// </summary>
-        /// <param name="sceneDB"></param>
+        /// <param name="sceneDB">目标场景数据库。</param>
         public static void StreamerExport(SLGSceneDB sceneDB)
         {
             FillPropertyLayerSceneDB(sceneDB);
@@ -21,10 +21,6 @@ namespace ST.SLG
             FillAllAreaPropertyLayer(sceneDB);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sceneDB"></param>
         static void FillAllAreaPropertyLayer(SLGSceneDB sceneDB)
         {
             var areaSetDB = sceneDB.areaSetDB;
@@ -53,10 +49,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sceneDB"></param>
         static void FillPropertyLayerSceneDB(SLGSceneDB sceneDB)
         {
             var gridObj = GetScenePropertyRootNode();
@@ -85,11 +77,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sceneDB"></param>
-        /// <param name="rootNode"></param>
         static void FillScenePropertyInfo(SLGSceneDB sceneDB, Transform rootNode)
         {
             var objList = SLGEditUtils.CollectAllPrefabByRootNode(rootNode.gameObject);
@@ -115,9 +102,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         static void CalcAllPropertyGrid(SLGSceneDB sceneDB)
         {
             for (int j = 1; j <= SLGDefine.s_SLG_Grid_VerticalNum; j++)
@@ -136,4 +120,3 @@ namespace ST.SLG
         }
     }
 }
-

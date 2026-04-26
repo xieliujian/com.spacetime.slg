@@ -8,44 +8,32 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 场景资源管理：加载共享格子资源、编号场景资源字典与按路径索引的自定义资源（如连线 Mesh），供地图层与信息层使用。
     /// </summary>
     public class SLGResMgr
     {
-        /// <summary>
-        /// 
-        /// </summary>
         SLGSceneResDB m_ResDB;
 
-        /// <summary>
-        /// 
-        /// </summary>
         SLGRes m_ShareGridRes = new SLGRes();
 
-        /// <summary>
-        /// 
-        /// </summary>
         Dictionary<int, SLGRes> m_SceneResDict = new Dictionary<int, SLGRes>();
 
-        /// <summary>
-        /// 
-        /// </summary>
         Dictionary<string, SLGRes> m_CustomResDict = new Dictionary<string, SLGRes>();
 
         /// <summary>
-        /// 
+        /// 绑定 <see cref="SLGSceneResDB"/> 配置。
         /// </summary>
-        /// <param name="resDB"></param>
+        /// <param name="resDB">场景资源 DB</param>
         public void SetResDB(SLGSceneResDB resDB)
         {
             m_ResDB = resDB;
         }
 
         /// <summary>
-        /// 
+        /// 按资源 ID 查找场景资源（与 <see cref="SLGSceneResDB.resDBList"/> 下标对应）。
         /// </summary>
-        /// <param name="resID"></param>
-        /// <returns></returns>
+        /// <param name="resID">资源 ID</param>
+        /// <returns>运行时资源包装，未加载返回 null</returns>
         public SLGRes FindSceneRes(int resID)
         {
             SLGRes res = null;
@@ -54,10 +42,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 按配置中的资源路径查找自定义资源（如 SceneLine 预制）。
         /// </summary>
-        /// <param name="resPath"></param>
-        /// <returns></returns>
+        /// <param name="resPath">资源路径</param>
+        /// <returns>运行时资源包装，未加载返回 null</returns>
         public SLGRes FindCustomRes(string resPath)
         {
             SLGRes res = null;
@@ -66,7 +54,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 加载共享网格与全部场景/自定义资源条目。
         /// </summary>
         public void Init()
         {
@@ -76,7 +64,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 释放字典内资源引用并清空。
         /// </summary>
         public void Destroy()
         {
@@ -85,9 +73,6 @@ namespace ST.SLG
             DestroyCustomResDict();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void DestroyCustomResDict()
         {
             foreach (var iter in m_CustomResDict)
@@ -102,9 +87,6 @@ namespace ST.SLG
             m_CustomResDict.Clear();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void DestroySceneResDict()
         {
             foreach (var iter in m_SceneResDict)
@@ -119,9 +101,6 @@ namespace ST.SLG
             m_SceneResDict.Clear();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitShareGridRes()
         {
             var shareGridResDB = m_ResDB.shareGridResDB;
@@ -138,9 +117,6 @@ namespace ST.SLG
             m_ShareGridRes.InitMesh();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitSceneResDict()
         {
             DestroySceneResDict();
@@ -177,9 +153,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitCustomResDict()
         {
             DestroyCustomResDict();
@@ -217,4 +190,3 @@ namespace ST.SLG
         }
     }
 }
-

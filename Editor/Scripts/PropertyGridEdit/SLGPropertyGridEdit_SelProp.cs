@@ -6,13 +6,10 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// SLG 属性网格编辑器：选择类属性层与场景数据填充（分部类）。
     /// </summary>
     public partial class SLGPropertyGridEdit
     {
-        /// <summary>
-        /// 
-        /// </summary>
         static string[] s_SLGSelPropPrefabArray =
         {
             "slg_selproperty_sel",
@@ -20,27 +17,13 @@ namespace ST.SLG
             "slg_selproperty_dynamic"
         };
 
-        /// <summary>
-        /// 
-        /// </summary>
         const string SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME = "SelPropertyLayer";
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rootGo"></param>
-        /// <param name="layerIndex"></param>
         static void CreateSelPropertyLayer(GameObject rootGo, int layerIndex)
         {
             SLGEditUtils.CreateSLGLayer(rootGo, SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME, layerIndex);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sceneDB"></param>
-        /// <param name="obj"></param>
-        /// <param name="propPos"></param>
         static void FillSceneSelPropertyInfo(SLGSceneDB sceneDB, GameObject obj, Vector2Int propPos)
         {
             var propertyDB = sceneDB.GetOrCreatePropertyGridDB(propPos);
@@ -62,4 +45,3 @@ namespace ST.SLG
         }
     }
 }
-

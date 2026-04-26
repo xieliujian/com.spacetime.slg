@@ -10,29 +10,14 @@ namespace ST.SLG
     /// </summary>
     public class SLGAreaInfoLayerSet
     {
-        /// <summary>
-        ///
-        /// </summary>
         SLGResMgr m_ResMgr;
 
-        /// <summary>
-        ///
-        /// </summary>
         int m_AreaIndex;
 
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaInfoLayerSetDB m_AreaInfoLayerSetDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         SLGAreaGridSetDB m_AreaGridSetDB;
 
-        /// <summary>
-        ///
-        /// </summary>
         Dictionary<int, SLGAreaInfoLayer> m_AreaLayerDict = new Dictionary<int, SLGAreaInfoLayer>();
 
         /// <summary>
@@ -123,9 +108,6 @@ namespace ST.SLG
             return block;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitLayerDict()
         {
             Destroy();
@@ -158,10 +140,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="layerDB"></param>
         void InitAreaResLvStateLayer(SLGAreaPropertyInfoLayerDB layerDB)
         {
             SLGRes res = m_ResMgr.FindCustomRes(layerDB.resPath);
@@ -180,9 +158,6 @@ namespace ST.SLG
             m_AreaLayerDict.Add(layerDB.layerID, layer);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitGridLayer(SLGAreaInfoLayerDB layerDB)
         {
             SLGRes res = m_ResMgr.FindCustomRes(layerDB.resPath);
@@ -201,4 +176,3 @@ namespace ST.SLG
         }
     }
 }
-

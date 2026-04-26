@@ -5,75 +5,48 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// 场景连线渲染层：按唯一 ID 管理多条线段，将实例分块填入 <see cref="SLGSceneLineBlock"/> 并批量绘制。
     /// </summary>
     public class SLGSceneLineLayer
     {
-        /// <summary>
-        /// 
-        /// </summary>
         const int INIT_BLOCK_NUM = 5;
 
-        /// <summary>
-        /// 
-        /// </summary>
         SLGResMgr m_ResMgr;
 
-        /// <summary>
-        /// 
-        /// </summary>
         SLGAreaInfoLayerDB m_InfoLayerDB;
 
-        /// <summary>
-        /// 
-        /// </summary>
         Mesh m_Mesh;
 
-        /// <summary>
-        /// 
-        /// </summary>
         Material m_Mat;
 
-        /// <summary>
-        /// 
-        /// </summary>
         float m_MeshLength;
 
-        /// <summary>
-        /// 
-        /// </summary>
         float m_MeshWidth;
 
-        /// <summary>
-        /// 
-        /// </summary>
         Dictionary<uint, int> m_UniqueID2IndexDict = new Dictionary<uint, int>();
 
-        /// <summary>
-        /// 
-        /// </summary>
         List<SLGSceneLineBlock> m_BlockList = new List<SLGSceneLineBlock>();
 
         /// <summary>
-        /// 
+        /// 注入资源管理器。
         /// </summary>
-        /// <param name="resMgr"></param>
+        /// <param name="resMgr">资源管理器</param>
         public void SetResMgr(SLGResMgr resMgr)
         {
             m_ResMgr = resMgr;
         }
 
         /// <summary>
-        /// 
+        /// 绑定连线层使用的信息层 DB（取自定义资源路径等）。
         /// </summary>
-        /// <param name="infoLayerDB"></param>
+        /// <param name="infoLayerDB">信息层 DB</param>
         public void SetAreaInfoLayerDB(SLGAreaInfoLayerDB infoLayerDB)
         {
             m_InfoLayerDB = infoLayerDB;
         }
 
         /// <summary>
-        /// 
+        /// 加载 Mesh/材质并预分配若干 <see cref="SLGSceneLineBlock"/>。
         /// </summary>
         public void Init()
         {
@@ -92,7 +65,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 销毁所有块并清空 ID 映射。
         /// </summary>
         public void Destroy()
         {
@@ -103,7 +76,7 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 绘制所有连线块。
         /// </summary>
         public void Render()
         {
@@ -117,12 +90,12 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 添加或更新一条连线（世界坐标）；已存在相同 <paramref name="uniqueID"/> 则更新矩阵。
         /// </summary>
-        /// <param name="uniqueID"></param>
-        /// <param name="startPos"></param>
-        /// <param name="endPos"></param>
-        /// <param name="enemy"></param>
+        /// <param name="uniqueID">业务侧唯一 ID</param>
+        /// <param name="startPos">起点世界坐标</param>
+        /// <param name="endPos">终点世界坐标</param>
+        /// <param name="enemy">是否为敌方样式（Shader 参数）</param>
         public void AddSceneLineInfo(uint uniqueID, Vector3 startPos, Vector3 endPos, bool enemy)
         {
             if (m_UniqueID2IndexDict.ContainsKey(uniqueID))
@@ -165,9 +138,9 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 移除指定 ID 的连线并回收实例槽位。
         /// </summary>
-        /// <param name="uniqueID"></param>
+        /// <param name="uniqueID">业务侧唯一 ID</param>
         public void RemoveSceneLineInfo(uint uniqueID)
         {
             if (m_UniqueID2IndexDict.ContainsKey(uniqueID))
@@ -184,11 +157,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="globalIndex"></param>
-        /// <returns></returns>
         SLGSceneLineBlock AddBlock(out int globalIndex, out int matrixIndex)
         {
             globalIndex = -1;
@@ -230,12 +198,6 @@ namespace ST.SLG
             return findBlock;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="globalIndex"></param>
-        /// <param name="blockIndex"></param>
-        /// <returns></returns>
         SLGSceneLineBlock FindBlock(int globalIndex, out int matrixIndex)
         {
             int blockIndex = globalIndex / SLGSceneLineBlock.SLG_LINE_BLOCK_MATRIX_NUM;
@@ -247,10 +209,6 @@ namespace ST.SLG
             return m_BlockList[blockIndex];
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         SLGSceneLineBlock InitBlock()
         {
             SLGSceneLineBlock block = new SLGSceneLineBlock();
@@ -262,9 +220,6 @@ namespace ST.SLG
             return block;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void InitBlockList()
         {
             for (int i = 0; i < INIT_BLOCK_NUM; i++)
@@ -274,9 +229,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         void DestroyBlockList()
         {
             foreach(var block in m_BlockList)
@@ -291,4 +243,3 @@ namespace ST.SLG
         }
     }
 }
-

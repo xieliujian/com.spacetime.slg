@@ -5,18 +5,15 @@ using UnityEngine;
 namespace ST.SLG
 {
     /// <summary>
-    /// 
+    /// <see cref="SLGSceneMgr"/> 的 GM 调试扩展：解析控制台子命令，用于动态地表、格子信息、场景连线与属性层显隐等压力测试。
     /// </summary>
     public partial class SLGSceneMgr
     {
         /// <summary>
-        /// 
+        /// GM 根命令关键字，与宿主 GM 系统注册时一致（例如 slgdebug）。
         /// </summary>
         public const string GM_CMD_STR = "slgdebug";
 
-        /// <summary>
-        /// 
-        /// </summary>
         const string CMD_STR_DYNAMIC_MAP_INDEX = "DynamicMapIndex";
         const string CMD_STR_ADD_AREA_GRID_INFO = "AddAreaGridInfo";
         const string CMD_STR_ADD_AREA_GRID_INFO_LIST = "AddAreaGridInfoList";
@@ -32,10 +29,10 @@ namespace ST.SLG
         const string CMD_STR_INST_GPU_SKIN_LIST = "InstGpuSkinList";
 
         /// <summary>
-        /// 
+        /// 执行 SLG 调试子命令；参数格式见方法体内注释示例。
         /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
+        /// <param name="_cmd">子命令名，与上述 CMD_STR_* 常量一致</param>
+        /// <param name="_val">逗号分隔的参数串</param>
         public void DebugCmd(string _cmd, string _val)
         {
             // slgdebug DynamicMapIndex 1
@@ -106,11 +103,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void SubmitAreaInfoDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -121,11 +113,6 @@ namespace ST.SLG
             m_Scene.SubmitGPUByLayer(layerID);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void InstGpuSkinListDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -167,11 +154,6 @@ namespace ST.SLG
             }, bundlePath);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void InstGpuSkinDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -203,11 +185,6 @@ namespace ST.SLG
             }, bundlePath);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void RemoveSceneLineInfoDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -219,11 +196,6 @@ namespace ST.SLG
             RemoveSceneLineInfo(uniqueID);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void SetAreaPropertyLayerVisibleDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -237,11 +209,6 @@ namespace ST.SLG
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void RemoveSceneLineInfoListDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -256,11 +223,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void AddSceneLineInfoDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -282,11 +244,6 @@ namespace ST.SLG
             AddSceneLineInfo(uniqueID, startPos, endPos, isEnemy);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void AddSceneLineInfoListDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -311,11 +268,6 @@ namespace ST.SLG
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void RemoveAreaGridInfoListDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -344,11 +296,6 @@ namespace ST.SLG
             m_Scene.SubmitGPUByLayer(layerID);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void RemoveAreaGridInfoDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -365,11 +312,6 @@ namespace ST.SLG
             m_Scene.SubmitGPUByLayer(layerID);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void AddAreaGridInfoListDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -404,11 +346,6 @@ namespace ST.SLG
             m_Scene.SubmitGPUByLayer(layerID);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void AddAreaGridInfoDebugCmd(string _cmd, string _val)
         {
             var infoArray = _val.Split(',');
@@ -431,11 +368,6 @@ namespace ST.SLG
             m_Scene.SubmitGPUByLayer(layerID);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_cmd"></param>
-        /// <param name="_val"></param>
         void DynamicMapIndexDebugCmd(string _cmd, string _val)
         {
             var dynamicMapIndex = int.Parse(_val);
@@ -443,4 +375,3 @@ namespace ST.SLG
         }
     }
 }
-

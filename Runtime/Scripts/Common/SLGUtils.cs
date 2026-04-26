@@ -14,9 +14,7 @@ namespace ST.SLG
     /// </summary>
     public class SLGUtils
     {
-        /// <summary>
-        /// ����
-        /// </summary>
+        // CSV 行内字段分隔符
         const string SPLIT_STR = ",";
 
         /// <summary>
@@ -40,7 +38,7 @@ namespace ST.SLG
         public const string GLOBAL_ROOT_NAME = "Global";
 
         /// <summary>
-        /// ������̬�����
+        /// SLG 场景动态对象组在全局根下的子节点名称。
         /// </summary>
         public const string SLG_SCENE_DYNAMIC_OBJ_GROUP_ROOT_NAME = "SLGSceneDynamicObjGroupRoot";
 
@@ -50,15 +48,15 @@ namespace ST.SLG
         public enum TestPlanesResults
         {
             /// <summary>
-            /// The AABB is completely in the frustrum.
+            /// 轴对齐包围盒完全位于视锥体内。
             /// </summary>
             Inside = 0,
             /// <summary>
-            /// The AABB is partially in the frustrum.
+            /// 轴对齐包围盒与视锥体相交（部分在内）。
             /// </summary>
             Intersect,
             /// <summary>
-            /// The AABB is completely outside the frustrum.
+            /// 轴对齐包围盒完全在视锥体外。
             /// </summary>
             Outside
         }
@@ -94,10 +92,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// �����߼���������������������ڿ��ٻ�ȡ����[0 ~ 25��
+        /// 由逻辑格子坐标计算所属区域下标，用于在 25 个分块中快速定位（一般为 0～24）。
         /// </summary>
-        /// <param name="logicPos"></param>
-        /// <returns></returns>
+        /// <param name="logicPos">逻辑格子坐标</param>
+        /// <returns>区域下标</returns>
         public static int CalcAreaIndexByLogicPos(Vector2Int logicPos)
         {
             int x = (logicPos.x - 1) / SLGDefine.s_SLG_Area_HorizontalGridNum;
@@ -108,10 +106,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// ��������ĸ������� [0 ~ 100��
+        /// 由逻辑格子坐标计算在该区域内的格子下标（一般为 0～99）。
         /// </summary>
-        /// <param name="logicPos"></param>
-        /// <returns></returns>
+        /// <param name="logicPos">逻辑格子坐标</param>
+        /// <returns>区域内格子下标</returns>
         public static int CalcAreaGridIndexByLogicPos(Vector2Int logicPos)
         {
             int x = (logicPos.x - 1) % SLGDefine.s_SLG_Area_HorizontalGridNum;
@@ -200,7 +198,7 @@ namespace ST.SLG
             var uvArray = mesh.uv;
             if (uvArray == null || uvArray.Length != 4)
             {
-                Debugger.LogDebugF("[SLG][CalcUVScaleOffsetByMesh] ģ�Ͷ�����Ŀ��Ϊ4 {0}", mesh.name);
+                Debugger.LogDebugF("[SLG][CalcUVScaleOffsetByMesh] 模型 UV 顶点数须为 4，当前：{0}", mesh.name);
                 return Vector4.zero;
             }
 
@@ -478,14 +476,13 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// This is a faster AABB cull than brute force that also gives additional info on intersections.
-        /// Calling Bounds.Min/Max is actually quite expensive so as an optimization you can precalculate these.
-        /// http://www.lighthouse3d.com/tutorials/view-frustum-culling/geometric-approach-testing-boxes-ii/
+        /// 使用各视锥面与 AABB 极值点快速判定的视锥剔除；可选返回是否与视锥面相交。参考：几何法测试包围盒与视锥关系。
         /// </summary>
-        /// <param name="planes"></param>
-        /// <param name="boundsMin"></param>
-        /// <param name="boundsMax"></param>
-        /// <returns></returns>
+        /// <param name="planes">视锥体六个平面</param>
+        /// <param name="boundsMin">包围盒最小角（含各分量）</param>
+        /// <param name="boundsMax">包围盒最大角（含各分量）</param>
+        /// <param name="testIntersection">为 true 时区分完全在内与部分相交</param>
+        /// <returns>与视锥体的位置关系</returns>
         public static TestPlanesResults TestPlanesAABBInternalFast(Plane[] planes, ref Vector3 boundsMin, ref Vector3 boundsMax, bool testIntersection = false)
         {
             Vector3 vmin, vmax;
@@ -548,10 +545,10 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// ��ȡCsv����
+        /// 读取 CSV 文件，按 <see cref="SPLIT_STR"/> 分隔每行为字符串数组。
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">文件路径</param>
+        /// <returns>各行拆分后的列表</returns>
         public static List<string[]> ReadCsv(string path)
         {
             string[] splitarray = { SPLIT_STR };
@@ -574,9 +571,9 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 
+        /// 创建用于 SLG 小地图填充的 RGBA 点过滤纹理（尺寸取自 <see cref="SLGDefine.s_SLG_MiniMap_TexWidth"/> 等）。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>新纹理实例</returns>
         public static Texture2D CreateSLGMiniMapTexture()
         {
             Texture2D tex = new Texture2D(SLGDefine.s_SLG_MiniMap_TexWidth,
