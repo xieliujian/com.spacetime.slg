@@ -1,20 +1,21 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 
 namespace ST.SLG
 {
     /// <summary>
-    /// SLG 层配置管理器：自 CSV 加载渲染层与信息层行配置，并拆分为渲染层列表与信息层列表供编辑工具与运行时使用。
+    /// SLG 层配置管理器：自 Excel 加载渲染层与信息层行配置，并拆分为渲染层列表与信息层列表供编辑工具与运行时使用。
     /// </summary>
     public class SLGLayerConfigMgr
     {
         /// <summary>
-        /// 默认层配置 CSV 的绝对文件路径（相对工程，常指向 Packages 下资源）。
+        /// 默认层配置 Excel 的绝对文件路径（指向 Packages 下资源）。
         /// </summary>
-        static string SLG_LAYER_CONFIG_ABSOLUTE_PATH = Application.dataPath + "/../Packages/com.lingren.slg/Editor/Excel/SLGLayer_WPS.csv";
+        static string SLG_LAYER_CONFIG_ABSOLUTE_PATH = Application.dataPath + "/../Packages/com.spacetime.slg/Editor/Excel/SLGLayer_WPS.xlsx";
 
         static SLGLayerConfigMgr s_Instance;
 
@@ -35,9 +36,14 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 表头之后、有效数据起始行下标（跳过标题行）。
+        /// Excel 中英文列名所在行索引（0-based），第 1 行为英文字段名。
         /// </summary>
-        const int TABLE_INFO_ROW_START_INDEX = 2;
+        const int TABLE_HEADER_ROW_INDEX = 1;
+
+        /// <summary>
+        /// Excel 中有效数据起始行索引（0-based），跳过中文说明行与英文列名行。
+        /// </summary>
+        const int TABLE_DATA_ROW_START_INDEX = 2;
 
         List<SLGLayerConfig> m_LayerCfgList = new List<SLGLayerConfig>();
 
@@ -126,20 +132,24 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 从指定 CSV 文件路径重新加载并覆盖当前内存中的全量行列表（尚未拆分渲染/信息层时须再调用 <see cref="Init"/>）。
+        /// 从指定 Excel 文件路径重新加载并覆盖当前内存中的全量行列表（尚未拆分渲染/信息层时须再调用 <see cref="Init"/>）。
         /// </summary>
-        /// <param name="configPath">CSV 文件绝对路径</param>
+        /// <param name="configPath">Excel 文件绝对路径（.xlsx 或 .xls）</param>
         public void LoadConfig(string configPath)
         {
             m_LayerCfgList.Clear();
 
-            var strList = SLGUtils.ReadCsv(configPath);
-            if (strList.Count <= 0)
+            DataTable table = ST.Core.ExcelUtils.ReadExcel(configPath, 0, TABLE_HEADER_ROW_INDEX, TABLE_DATA_ROW_START_INDEX);
+            if (table == null || table.Rows.Count <= 0)
                 return;
 
-            for (int i = TABLE_INFO_ROW_START_INDEX; i < strList.Count; i++)
+            int colCount = table.Columns.Count;
+            foreach (DataRow row in table.Rows)
             {
-                var strArray = strList[i];
+                var strArray = new string[colCount];
+                for (int col = 0; col < colCount; col++)
+                    strArray[col] = row[col]?.ToString() ?? string.Empty;
+
                 if (string.IsNullOrEmpty(strArray[0]))
                     continue;
 
