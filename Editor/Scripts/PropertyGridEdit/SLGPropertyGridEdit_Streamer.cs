@@ -91,11 +91,11 @@ namespace ST.SLG
                 var pos = obj.transform.position;
                 var propPos = SLGUtils.ConvertSLG3DPosToLogicPos(pos);
 
-                if (rootNode.name == SLGEditDefine.SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME)
+                if (rootNode.name == SLGEditDefine.s_SLGEditLayerSelProperty_NodeName)
                 {
                     FillSceneSelPropertyInfo(sceneDB, obj, propPos);
                 }
-                else if (rootNode.name == SLGEditDefine.SLG_EDITLAYER_RES_LV_PROPERTY_NODE_NAME)
+                else if (rootNode.name == SLGEditDefine.s_SLGEditLayerResLvProperty_NodeName)
                 {
                     FillSceneResLvPropertyInfo(sceneDB, obj, propPos);
                 }

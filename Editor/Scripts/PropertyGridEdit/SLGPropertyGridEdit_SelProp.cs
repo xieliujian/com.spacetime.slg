@@ -12,7 +12,7 @@ namespace ST.SLG
     {
         static void CreateSelPropertyLayer(GameObject rootGo, int layerIndex)
         {
-            SLGEditUtils.CreateSLGLayer(rootGo, SLGEditDefine.SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME, layerIndex);
+            SLGEditUtils.CreateSLGLayer(rootGo, SLGEditDefine.s_SLGEditLayerSelProperty_NodeName, layerIndex);
         }
 
         static void FillSceneSelPropertyInfo(SLGSceneDB sceneDB, GameObject obj, Vector2Int propPos)
@@ -21,15 +21,15 @@ namespace ST.SLG
             if (propertyDB == null)
                 return;
 
-            if (obj.name == SLGEditDefine.s_SLGSelPropPrefabArray[0])
+            if (obj.name == SLGEditDefine.s_SLGSelProp_PrefabArray[0])
             {
                 propertyDB.selType = (int)SLGSelGridProp.CanSel;
             }
-            else if (obj.name == SLGEditDefine.s_SLGSelPropPrefabArray[1])
+            else if (obj.name == SLGEditDefine.s_SLGSelProp_PrefabArray[1])
             {
                 propertyDB.selType = (int)SLGSelGridProp.UnSel;
             }
-            else if (obj.name == SLGEditDefine.s_SLGSelPropPrefabArray[2])
+            else if (obj.name == SLGEditDefine.s_SLGSelProp_PrefabArray[2])
             {
                 propertyDB.selType = (int)SLGSelGridProp.Dynamic;
             }

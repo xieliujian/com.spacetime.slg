@@ -111,7 +111,7 @@ namespace ST.SLG
         /// <returns>根 GameObject，未找到或不带 Grid 时返回 null</returns>
         public static GameObject GetSLGSceneRenderRootNode()
         {
-            var rootGo = GameObject.Find(SLGEditDefine.SLG_RENDER_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.s_SLGRenderRoot_Name);
             if (rootGo == null)
                 return null;
 
@@ -124,7 +124,7 @@ namespace ST.SLG
 
         static void CreateSLGSceneRenderRootNode()
         {
-            var rootGo = new GameObject(SLGEditDefine.SLG_RENDER_ROOT_NAME);
+            var rootGo = new GameObject(SLGEditDefine.s_SLGRenderRoot_Name);
             if (rootGo == null)
                 return;
 
@@ -197,7 +197,7 @@ namespace ST.SLG
 
         static void SyncSLGSceneRenderRootNode()
         {
-            var rootGo = GameObject.Find(SLGEditDefine.SLG_RENDER_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.s_SLGRenderRoot_Name);
             if (rootGo == null)
                 return;
 

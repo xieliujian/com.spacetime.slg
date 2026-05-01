@@ -112,7 +112,7 @@ namespace ST.SLG
         /// </summary>
         public void LoadDefaultConfig()
         {
-            LoadConfig(SLGEditDefine.SLG_LAYER_CONFIG_ABSOLUTE_PATH);
+            LoadConfig(SLGEditDefine.s_SLGLayerConfig_AbsolutePath);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace ST.SLG
         {
             m_LayerCfgList.Clear();
 
-            DataTable table = ST.Core.ExcelUtils.ReadExcel(configPath, 0, SLGEditDefine.TABLE_HEADER_ROW_INDEX, SLGEditDefine.TABLE_DATA_ROW_START_INDEX);
+            DataTable table = ST.Core.ExcelUtils.ReadExcel(configPath, 0, SLGEditDefine.s_TableHeader_RowIndex, SLGEditDefine.s_TableData_RowStartIndex);
             if (table == null || table.Rows.Count <= 0)
                 return;
 

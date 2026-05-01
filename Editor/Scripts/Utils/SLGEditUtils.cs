@@ -162,9 +162,9 @@ namespace ST.SLG
         /// <returns>SLG 数据 <see cref="SLGSceneDB"/> 的 Assets 路径</returns>
         public static string GetSLGSceneDBPath(string scenePath)
         {
-            string path = scenePath.Replace(SLGEditDefine.SCENE_SUFFIX, "");
-            path += SLGEditDefine.SLG_SCENE_SUFFIX_NAME;
-            path += SLGEditDefine.ASSET_SUFFIX;
+            string path = scenePath.Replace(SLGEditDefine.s_Scene_Suffix, "");
+            path += SLGEditDefine.s_SLGScene_SuffixName;
+            path += SLGEditDefine.s_Asset_Suffix;
             return path;
         }
 

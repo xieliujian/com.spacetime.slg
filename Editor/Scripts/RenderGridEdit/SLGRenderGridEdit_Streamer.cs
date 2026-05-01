@@ -33,7 +33,7 @@ namespace ST.SLG
             sceneDB.Init();
 
             // 共享格预制体用于地图块合批/占位，能加载则登记进 resDB
-            var resPath = SLGEditDefine.SLG_INFO_PREFAB_PATH_PREFIX + SLGEditDefine.SLG_SHARE_GRID_PREFAB_NAME + SLGEditDefine.PREFAB_SUFFIX;
+            var resPath = SLGEditDefine.s_SLGInfoPrefab_PathPrefix + SLGEditDefine.s_SLGShareGrid_PrefabName + SLGEditDefine.s_Prefab_Suffix;
             var resPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(resPath);
             if (resPrefab != null)
             {
@@ -100,7 +100,7 @@ namespace ST.SLG
                 var areaPropertyLayerType = layerCfg.infoAreaPropertyLayerType;
                 var propertyTexSeq = new Vector2Int(layerCfg.infoAreaPropertyLayerTexSeqWidth, layerCfg.infoAreaPropertyLayerTexSeqHeight);
 
-                var resPath = SLGEditDefine.SLG_INFO_PREFAB_PATH_PREFIX + resName + SLGEditDefine.PREFAB_SUFFIX;
+                var resPath = SLGEditDefine.s_SLGInfoPrefab_PathPrefix + resName + SLGEditDefine.s_Prefab_Suffix;
                 var resPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(resPath);
                 if (resPrefab == null)
                     return;

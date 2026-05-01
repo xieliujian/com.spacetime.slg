@@ -46,6 +46,7 @@ SLGSceneMgr (singleton)
 - Keep namespace as `ST.SLG`.
 - In `SLGDefine`, use `public static readonly int` with `s_SLG_...` naming (example: `s_SLG_Grid_UnitSize`), not `const` + ALL_CAPS style.
 - Keep Shader property IDs in `SLGDefine` as `public static readonly int s_SLG_Shader_...`.
+- In `SLGEditDefine`, use `public static readonly` (never `const`) with `s_<Category>_<Property>` naming (PascalCase for both parts, example: `s_SLGLayerConfig_AbsolutePath`, `s_TableHeader_RowIndex`). ALL_CAPS style is forbidden in this class.
 - All public classes, methods, fields, and enums must have `/// <summary>` XML doc comments in Chinese.
 - Private/internal implementation fields and methods: no comments unless the logic is non-obvious.
 - Do not write empty `/// <summary>` blocks (no blank summaries).

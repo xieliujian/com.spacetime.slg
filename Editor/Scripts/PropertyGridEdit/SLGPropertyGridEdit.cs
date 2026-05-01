@@ -29,7 +29,7 @@ namespace ST.SLG
 
         static void SyncScenePropertyRootNode()
         {
-            var rootGo = GameObject.Find(SLGEditDefine.SLG_PROPERTY_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.s_SLGPropertyRoot_Name);
             if (rootGo == null)
                 return;
 
@@ -57,7 +57,7 @@ namespace ST.SLG
 
         static void CreateScenePropertyRootNode()
         {
-            var rootGo = new GameObject(SLGEditDefine.SLG_PROPERTY_ROOT_NAME);
+            var rootGo = new GameObject(SLGEditDefine.s_SLGPropertyRoot_Name);
             if (rootGo == null)
                 return;
 
@@ -80,7 +80,7 @@ namespace ST.SLG
 
         static GameObject GetScenePropertyRootNode()
         {
-            var rootGo = GameObject.Find(SLGEditDefine.SLG_PROPERTY_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.s_SLGPropertyRoot_Name);
             if (rootGo == null)
                 return null;
 

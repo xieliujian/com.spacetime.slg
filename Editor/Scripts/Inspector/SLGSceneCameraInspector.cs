@@ -48,13 +48,13 @@ namespace ST.SLG
             if (GUILayout.RepeatButton("滚轮向前"))
             {
                 isWheel = true;
-                script.SetInputScroll(SLGEditDefine.SLG_CAMERA_SCROLL_UNIT);
+                script.SetInputScroll(SLGEditDefine.s_SLGCamera_ScrollUnit);
             }
 
             if (GUILayout.RepeatButton("滚轮向后"))
             {
                 isWheel = true;
-                script.SetInputScroll(-SLGEditDefine.SLG_CAMERA_SCROLL_UNIT);
+                script.SetInputScroll(-SLGEditDefine.s_SLGCamera_ScrollUnit);
             }
 
             if (!isWheel)
@@ -76,7 +76,7 @@ namespace ST.SLG
 
             if (GUILayout.RepeatButton("W"))
             {
-                script.SetInputVertical(SLGEditDefine.SLG_CAMERA_VERTICAL_UNIT);
+                script.SetInputVertical(SLGEditDefine.s_SLGCamera_VerticalUnit);
                 isVertical = true;
             }
 
@@ -84,13 +84,13 @@ namespace ST.SLG
 
             if (GUILayout.RepeatButton("A"))
             {
-                script.SetInputHorizontal(-SLGEditDefine.SLG_CAMERA_HORIZONTAL_UNIT);
+                script.SetInputHorizontal(-SLGEditDefine.s_SLGCamera_HorizontalUnit);
                 isHorizontal = true;
             }
 
             if (GUILayout.RepeatButton("D"))
             {
-                script.SetInputHorizontal(SLGEditDefine.SLG_CAMERA_HORIZONTAL_UNIT);
+                script.SetInputHorizontal(SLGEditDefine.s_SLGCamera_HorizontalUnit);
                 isHorizontal = true;
             }
 
@@ -98,7 +98,7 @@ namespace ST.SLG
 
             if (GUILayout.RepeatButton("S"))
             {
-                script.SetInputVertical(-SLGEditDefine.SLG_CAMERA_VERTICAL_UNIT);
+                script.SetInputVertical(-SLGEditDefine.s_SLGCamera_VerticalUnit);
                 isVertical = true;
             }
 

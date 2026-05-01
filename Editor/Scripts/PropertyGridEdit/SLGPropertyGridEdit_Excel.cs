@@ -32,7 +32,7 @@ namespace ST.SLG
 
         static void ExportPropertyGridExcel(SLGSceneDB sceneDB, string sceneDir)
         {
-            string filePath = string.Format("{0}/{1}", sceneDir, SLGEditDefine.SLG_PROPERTY_EXCEL_FILENAME);
+            string filePath = string.Format("{0}/{1}", sceneDir, SLGEditDefine.s_SLGPropertyExcel_FileName);
 
             FileInfo file = new FileInfo(filePath);
             if (file == null)

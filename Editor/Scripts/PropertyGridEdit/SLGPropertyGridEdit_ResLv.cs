@@ -12,7 +12,7 @@ namespace ST.SLG
     {
         static void CreateResLvPropertyLayer(GameObject rootGo, int layerIndex)
         {
-            SLGEditUtils.CreateSLGLayer(rootGo, SLGEditDefine.SLG_EDITLAYER_RES_LV_PROPERTY_NODE_NAME, layerIndex);
+            SLGEditUtils.CreateSLGLayer(rootGo, SLGEditDefine.s_SLGEditLayerResLvProperty_NodeName, layerIndex);
         }
 
         static void FillSceneResLvPropertyInfo(SLGSceneDB sceneDB, GameObject obj, Vector2Int propPos)
@@ -22,10 +22,10 @@ namespace ST.SLG
                 return;
 
             var objName = obj.name;
-            if (!objName.Contains(SLGEditDefine.SLG_RES_LV_PROPERTY_PREFAB_PREFIX))
+            if (!objName.Contains(SLGEditDefine.s_SLGResLvProperty_PrefabPrefix))
                 return;
 
-            objName = objName.Replace(SLGEditDefine.SLG_RES_LV_PROPERTY_PREFAB_PREFIX, "");
+            objName = objName.Replace(SLGEditDefine.s_SLGResLvProperty_PrefabPrefix, "");
 
             try
             {
