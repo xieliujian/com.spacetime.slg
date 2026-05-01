@@ -66,13 +66,44 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 按完整资源名同步加载资源（使用 Resources.Load）。
+        /// 按完整资源名同步加载资源（编辑器模式使用 AssetDatabase）。
         /// </summary>
         /// <param name="fullName">资源完整路径或标识</param>
         /// <returns>加载到的 Unity 对象</returns>
         public UnityEngine.Object GetResource(string fullName)
         {
-            return Resources.Load(fullName);
+            // 编辑器模式下使用 AssetDatabase 加载资源
+            // fullName 可能是相对路径或完整路径
+
+            // 如果已经是 Assets/ 开头的完整路径，直接加载
+            if (fullName.StartsWith("Assets/"))
+            {
+                return AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(fullName);
+            }
+
+            // 否则尝试构建完整路径
+            string assetPath = fullName;
+
+            // 如果没有扩展名，尝试添加 .prefab
+            if (!System.IO.Path.HasExtension(assetPath))
+            {
+                assetPath += ".prefab";
+            }
+
+            // 如果不是绝对路径，尝试在 SLG 资源目录下查找
+            if (!assetPath.StartsWith("Assets/"))
+            {
+                assetPath = SLGEditDefine.s_SLGInfoPrefab_PathPrefix + assetPath;
+            }
+
+            var asset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
+
+            if (asset == null)
+            {
+                UnityEngine.Debug.LogWarning($"[SLGWarpEditor] Failed to load resource: {fullName} (tried: {assetPath})");
+            }
+
+            return asset;
         }
 
         /// <summary>
@@ -82,11 +113,28 @@ namespace ST.SLG
         /// <returns>完整资源名</returns>
         public string GetPrefabFullName(string prefabName)
         {
-            if (prefabName.StartsWith("slg_"))
+            // 编辑器模式下返回完整的 Assets 路径
+            if (prefabName.StartsWith("Assets/"))
             {
-                return "slg/logicprefab/" + prefabName;
+                return prefabName;
             }
-            return prefabName;
+
+            // 构建完整路径
+            string fullPath = prefabName;
+
+            // 如果没有扩展名，添加 .prefab
+            if (!System.IO.Path.HasExtension(fullPath))
+            {
+                fullPath += ".prefab";
+            }
+
+            // 如果不是绝对路径，添加 SLG 资源目录前缀
+            if (!fullPath.StartsWith("Assets/"))
+            {
+                fullPath = SLGEditDefine.s_SLGInfoPrefab_PathPrefix + fullPath;
+            }
+
+            return fullPath;
         }
 
         /// <summary>
