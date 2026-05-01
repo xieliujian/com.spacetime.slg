@@ -30,8 +30,9 @@ namespace ST.SLG
 
         /// <summary>
         /// 逻辑/信息层预制体资源路径前缀（相对于 Assets 目录）。
+        /// 基于 SLGDefine.SLG_LOGIC_PREFAB_PATH 构建完整编辑器路径。
         /// </summary>
-        public static readonly string s_SLGInfoPrefab_PathPrefix = "Assets/scene/common/res/slg/logicprefab/";
+        public static readonly string s_SLGInfoPrefab_PathPrefix = "Assets/" + SLGDefine.SLG_LOGIC_PREFAB_PATH;
 
         /// <summary>
         /// 全局共用的 SLG 共享格预制体名（无扩展名）。

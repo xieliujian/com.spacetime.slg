@@ -95,6 +95,11 @@ namespace ST.SLG
         public static readonly int s_SLG_MiniMap_TexHeight = s_SLG_Grid_VerticalNum * s_SLG_MiniMap_GridPixelCount;
 
         /// <summary>
+        /// SLG 逻辑预制体相对路径（不含 Assets/ 前缀，用于跨环境资源加载）
+        /// </summary>
+        public const string SLG_LOGIC_PREFAB_PATH = "scene/common/res/slg/logicprefab/";
+
+        /// <summary>
         /// 每帧存储的图层数据，该枚举尽量不要改变，便于优化缓存
         /// </summary>
         public enum SLGInfoLayer
