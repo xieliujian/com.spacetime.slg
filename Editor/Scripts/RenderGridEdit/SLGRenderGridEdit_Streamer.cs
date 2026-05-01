@@ -15,7 +15,7 @@ namespace ST.SLG
         /// 将当前场景中的渲染/信息层与区域数据导出到 <paramref name="sceneDB"/>，并输出涉及的预制体与共享格等资源路径。
         /// </summary>
         /// <param name="sceneDB">要写入的 SLG 场景数据库</param>
-        /// <param name="outResPathList">本导出涉及的 prefab 与共享资源等路径列表</param>
+        /// <param name="outResPathList">本导出涉及的 prefab 与共享资源等路径列表（Assets 完整路径）</param>
         public static void StreamerExport(SLGSceneDB sceneDB, out List<string> outResPathList)
         {
             InitSceneDB(sceneDB);
@@ -23,9 +23,46 @@ namespace ST.SLG
             FillInfoLayerSceneDB(sceneDB);
             CalcAllAreaBounds(sceneDB);
 
-            outResPathList = sceneDB.resDB.realResPathList;
+            outResPathList = new List<string>();
+
+            // 添加渲染层资源
+            outResPathList.AddRange(sceneDB.resDB.realResPathList);
             outResPathList.AddRange(sceneDB.resDB.realCustomResPathList);
             outResPathList.Add(sceneDB.resDB.realShareGridResPath);
+
+            // 添加信息层资源
+            if (sceneDB.areaSetDB != null && sceneDB.areaSetDB.infoLayerSet != null)
+            {
+                // 添加普通信息层
+                if (sceneDB.areaSetDB.infoLayerSet.layerList != null)
+                {
+                    foreach (var layer in sceneDB.areaSetDB.infoLayerSet.layerList)
+                    {
+                        if (layer != null && !string.IsNullOrEmpty(layer.resPath))
+                        {
+                            if (!outResPathList.Contains(layer.resPath))
+                            {
+                                outResPathList.Add(layer.resPath);
+                            }
+                        }
+                    }
+                }
+
+                // 添加属性信息层
+                if (sceneDB.areaSetDB.infoLayerSet.propertyLayerList != null)
+                {
+                    foreach (var layer in sceneDB.areaSetDB.infoLayerSet.propertyLayerList)
+                    {
+                        if (layer != null && !string.IsNullOrEmpty(layer.resPath))
+                        {
+                            if (!outResPathList.Contains(layer.resPath))
+                            {
+                                outResPathList.Add(layer.resPath);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         static void InitSceneDB(SLGSceneDB sceneDB)
