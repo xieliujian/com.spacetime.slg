@@ -10,18 +10,9 @@ namespace ST.SLG
     /// </summary>
     public partial class SLGPropertyGridEdit
     {
-        static string[] s_SLGSelPropPrefabArray =
-        {
-            "slg_selproperty_sel",
-            "slg_selproperty_unsel",
-            "slg_selproperty_dynamic"
-        };
-
-        const string SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME = "SelPropertyLayer";
-
         static void CreateSelPropertyLayer(GameObject rootGo, int layerIndex)
         {
-            SLGEditUtils.CreateSLGLayer(rootGo, SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME, layerIndex);
+            SLGEditUtils.CreateSLGLayer(rootGo, SLGEditDefine.SLG_EDIT_LAYER_SEL_PROPERTY_NODE_NAME, layerIndex);
         }
 
         static void FillSceneSelPropertyInfo(SLGSceneDB sceneDB, GameObject obj, Vector2Int propPos)
@@ -30,15 +21,15 @@ namespace ST.SLG
             if (propertyDB == null)
                 return;
 
-            if (obj.name == s_SLGSelPropPrefabArray[0])
+            if (obj.name == SLGEditDefine.s_SLGSelPropPrefabArray[0])
             {
                 propertyDB.selType = (int)SLGSelGridProp.CanSel;
             }
-            else if (obj.name == s_SLGSelPropPrefabArray[1])
+            else if (obj.name == SLGEditDefine.s_SLGSelPropPrefabArray[1])
             {
                 propertyDB.selType = (int)SLGSelGridProp.UnSel;
             }
-            else if (obj.name == s_SLGSelPropPrefabArray[2])
+            else if (obj.name == SLGEditDefine.s_SLGSelPropPrefabArray[2])
             {
                 propertyDB.selType = (int)SLGSelGridProp.Dynamic;
             }

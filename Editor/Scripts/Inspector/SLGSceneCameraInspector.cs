@@ -11,12 +11,6 @@ namespace ST.SLG
     [CustomEditor(typeof(SLGSceneCamera))]
     public class SLGSceneCameraInspector : Editor
     {
-        const float SCROLL_UNIT = 0.01f;
-
-        const float VERTICAL_UNIT = 0.1f;
-
-        const float HORIZONTAL_UNIT = 0.1f;
-
         /// <summary>
         /// 绘制运行提示、编辑器移动按钮并绘制默认序列化字段。
         /// </summary>
@@ -54,13 +48,13 @@ namespace ST.SLG
             if (GUILayout.RepeatButton("滚轮向前"))
             {
                 isWheel = true;
-                script.SetInputScroll(SCROLL_UNIT);
+                script.SetInputScroll(SLGEditDefine.SLG_CAMERA_SCROLL_UNIT);
             }
 
             if (GUILayout.RepeatButton("滚轮向后"))
             {
                 isWheel = true;
-                script.SetInputScroll(-SCROLL_UNIT);
+                script.SetInputScroll(-SLGEditDefine.SLG_CAMERA_SCROLL_UNIT);
             }
 
             if (!isWheel)
@@ -82,7 +76,7 @@ namespace ST.SLG
 
             if (GUILayout.RepeatButton("W"))
             {
-                script.SetInputVertical(VERTICAL_UNIT);
+                script.SetInputVertical(SLGEditDefine.SLG_CAMERA_VERTICAL_UNIT);
                 isVertical = true;
             }
 
@@ -90,13 +84,13 @@ namespace ST.SLG
 
             if (GUILayout.RepeatButton("A"))
             {
-                script.SetInputHorizontal(-HORIZONTAL_UNIT);
+                script.SetInputHorizontal(-SLGEditDefine.SLG_CAMERA_HORIZONTAL_UNIT);
                 isHorizontal = true;
             }
 
             if (GUILayout.RepeatButton("D"))
             {
-                script.SetInputHorizontal(HORIZONTAL_UNIT);
+                script.SetInputHorizontal(SLGEditDefine.SLG_CAMERA_HORIZONTAL_UNIT);
                 isHorizontal = true;
             }
 
@@ -104,7 +98,7 @@ namespace ST.SLG
 
             if (GUILayout.RepeatButton("S"))
             {
-                script.SetInputVertical(-VERTICAL_UNIT);
+                script.SetInputVertical(-SLGEditDefine.SLG_CAMERA_VERTICAL_UNIT);
                 isVertical = true;
             }
 

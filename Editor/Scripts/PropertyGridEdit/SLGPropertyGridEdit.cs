@@ -10,11 +10,6 @@ namespace ST.SLG
     public partial class SLGPropertyGridEdit
     {
         /// <summary>
-        /// 场景中表示 SLG 属性根节点的 GameObject 名称（与 <c>SLGPropertyGrid</c> 根对应）。
-        /// </summary>
-        const string SLG_PROPERTY_ROOT_NAME = "SLGPropertyGrid";
-
-        /// <summary>
         /// 若不存在则创建，否则按当前层配置同步属性根下各子层的 Grid 与 Y 向偏移。
         /// </summary>
         public static void CreateOrSyncScenePropertyRootNode()
@@ -34,7 +29,7 @@ namespace ST.SLG
 
         static void SyncScenePropertyRootNode()
         {
-            var rootGo = GameObject.Find(SLG_PROPERTY_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.SLG_PROPERTY_ROOT_NAME);
             if (rootGo == null)
                 return;
 
@@ -62,7 +57,7 @@ namespace ST.SLG
 
         static void CreateScenePropertyRootNode()
         {
-            var rootGo = new GameObject(SLG_PROPERTY_ROOT_NAME);
+            var rootGo = new GameObject(SLGEditDefine.SLG_PROPERTY_ROOT_NAME);
             if (rootGo == null)
                 return;
 
@@ -85,7 +80,7 @@ namespace ST.SLG
 
         static GameObject GetScenePropertyRootNode()
         {
-            var rootGo = GameObject.Find(SLG_PROPERTY_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.SLG_PROPERTY_ROOT_NAME);
             if (rootGo == null)
                 return null;
 

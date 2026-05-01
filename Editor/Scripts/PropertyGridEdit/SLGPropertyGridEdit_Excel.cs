@@ -15,11 +15,6 @@ namespace ST.SLG
     /// </summary>
     public partial class SLGPropertyGridEdit
     {
-#if ART_SCENE_PROJECT
-
-        static string SLG_PROPERTY_EXCEL_FILENAME = "slg_scene_property.xlsx";
-
-#endif
 
         /// <summary>
         /// 将全图属性格导出为 Excel 文件到指定场景目录下（需定义 <c>ART_SCENE_PROJECT</c> 并引用 EPPlus，否则无操作）。
@@ -37,7 +32,7 @@ namespace ST.SLG
 
         static void ExportPropertyGridExcel(SLGSceneDB sceneDB, string sceneDir)
         {
-            string filePath = string.Format("{0}/{1}", sceneDir, SLG_PROPERTY_EXCEL_FILENAME);
+            string filePath = string.Format("{0}/{1}", sceneDir, SLGEditDefine.SLG_PROPERTY_EXCEL_FILENAME);
 
             FileInfo file = new FileInfo(filePath);
             if (file == null)

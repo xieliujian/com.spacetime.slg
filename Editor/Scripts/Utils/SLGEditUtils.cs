@@ -14,26 +14,6 @@ namespace ST.SLG
     /// </summary>
     public class SLGEditUtils
     {
-        /// <summary>
-        /// 逻辑/信息层预制体资源路径前缀（相对于 Assets 目录）。
-        /// </summary>
-        public const string SLG_INFO_PREFAB_PATH_PREFIX = "Assets/scene/common/res/slg/logicprefab/";
-
-        /// <summary>
-        /// 全局共用的 SLG 共享格预制体名（无扩展名）。
-        /// </summary>
-        public const string SLG_SHARE_GRID_PREFAB_NAME = "slg_share_grid";
-
-        /// <summary>
-        /// Unity 预制体资源文件扩展名。
-        /// </summary>
-        public const string PREFAB_SUFFIX = ".prefab";
-
-        const string SCENE_SUFFIX = ".unity";
-
-        const string SLG_SCENE_SUFFIX_NAME = "_SLG";
-
-        const string ASSET_SUFFIX = ".asset";
 
         [MenuItem("MHT/SLG/同步场景渲染根节点", false, 142)]
         static void CreateOrSyncSceneRenderRootNode()
@@ -182,9 +162,9 @@ namespace ST.SLG
         /// <returns>SLG 数据 <see cref="SLGSceneDB"/> 的 Assets 路径</returns>
         public static string GetSLGSceneDBPath(string scenePath)
         {
-            string path = scenePath.Replace(SCENE_SUFFIX, "");
-            path += SLG_SCENE_SUFFIX_NAME;
-            path += ASSET_SUFFIX;
+            string path = scenePath.Replace(SLGEditDefine.SCENE_SUFFIX, "");
+            path += SLGEditDefine.SLG_SCENE_SUFFIX_NAME;
+            path += SLGEditDefine.ASSET_SUFFIX;
             return path;
         }
 

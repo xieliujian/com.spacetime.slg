@@ -12,11 +12,6 @@ namespace ST.SLG
     /// </summary>
     public class SLGLayerConfigMgr
     {
-        /// <summary>
-        /// 默认层配置 Excel 的绝对文件路径（指向 Packages 下资源）。
-        /// </summary>
-        static string SLG_LAYER_CONFIG_ABSOLUTE_PATH = Application.dataPath + "/../Packages/com.spacetime.slg/Editor/Excel/SLGLayer_WPS.xlsx";
-
         static SLGLayerConfigMgr s_Instance;
 
         /// <summary>
@@ -34,16 +29,6 @@ namespace ST.SLG
                 return s_Instance;
             }
         }
-
-        /// <summary>
-        /// Excel 中英文列名所在行索引（0-based），第 1 行为英文字段名。
-        /// </summary>
-        const int TABLE_HEADER_ROW_INDEX = 1;
-
-        /// <summary>
-        /// Excel 中有效数据起始行索引（0-based），跳过中文说明行与英文列名行。
-        /// </summary>
-        const int TABLE_DATA_ROW_START_INDEX = 2;
 
         List<SLGLayerConfig> m_LayerCfgList = new List<SLGLayerConfig>();
 
@@ -127,8 +112,7 @@ namespace ST.SLG
         /// </summary>
         public void LoadDefaultConfig()
         {
-            var configPath = SLG_LAYER_CONFIG_ABSOLUTE_PATH;
-            LoadConfig(configPath);
+            LoadConfig(SLGEditDefine.SLG_LAYER_CONFIG_ABSOLUTE_PATH);
         }
 
         /// <summary>
@@ -139,7 +123,7 @@ namespace ST.SLG
         {
             m_LayerCfgList.Clear();
 
-            DataTable table = ST.Core.ExcelUtils.ReadExcel(configPath, 0, TABLE_HEADER_ROW_INDEX, TABLE_DATA_ROW_START_INDEX);
+            DataTable table = ST.Core.ExcelUtils.ReadExcel(configPath, 0, SLGEditDefine.TABLE_HEADER_ROW_INDEX, SLGEditDefine.TABLE_DATA_ROW_START_INDEX);
             if (table == null || table.Rows.Count <= 0)
                 return;
 

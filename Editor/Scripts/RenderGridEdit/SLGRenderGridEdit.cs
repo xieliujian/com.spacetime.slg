@@ -13,11 +13,6 @@ namespace ST.SLG
     public partial class SLGRenderGridEdit
     {
         /// <summary>
-        /// 场景中表示 SLG 渲染根节点的 GameObject 名称（与 <c>SLGRenderGrid</c> 根对应）。
-        /// </summary>
-        const string SLG_RENDER_ROOT_NAME = "SLGRenderGrid";
-
-        /// <summary>
         /// 若不存在则创建，否则按当前层配置同步 <c>SLGRenderGrid</c> 下各子层变换与 <c>Grid</c> 参数及 Y 向分层。
         /// </summary>
         public static void CreateOrSyncSceneRenderRootNode()
@@ -26,13 +21,9 @@ namespace ST.SLG
 
             var rootGo = GetSLGSceneRenderRootNode();
             if (rootGo == null)
-            {
                 CreateSLGSceneRenderRootNode();
-            }
             else
-            {
                 SyncSLGSceneRenderRootNode();
-            }
         }
 
         /// <summary>
@@ -120,7 +111,7 @@ namespace ST.SLG
         /// <returns>根 GameObject，未找到或不带 Grid 时返回 null</returns>
         public static GameObject GetSLGSceneRenderRootNode()
         {
-            var rootGo = GameObject.Find(SLG_RENDER_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.SLG_RENDER_ROOT_NAME);
             if (rootGo == null)
                 return null;
 
@@ -133,7 +124,7 @@ namespace ST.SLG
 
         static void CreateSLGSceneRenderRootNode()
         {
-            var rootGo = new GameObject(SLG_RENDER_ROOT_NAME);
+            var rootGo = new GameObject(SLGEditDefine.SLG_RENDER_ROOT_NAME);
             if (rootGo == null)
                 return;
 
@@ -206,7 +197,7 @@ namespace ST.SLG
 
         static void SyncSLGSceneRenderRootNode()
         {
-            var rootGo = GameObject.Find(SLG_RENDER_ROOT_NAME);
+            var rootGo = GameObject.Find(SLGEditDefine.SLG_RENDER_ROOT_NAME);
             if (rootGo == null)
                 return;
 
