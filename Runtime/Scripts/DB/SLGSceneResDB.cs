@@ -53,7 +53,7 @@ namespace ST.SLG
         /// <param name="resPath">资源路径</param>
         public void InitShareGridRes(string resPath)
         {
-            var newResPath = resPath.ToLower();
+            var newResPath = ConvertToResourcesPath(resPath);
             shareGridResDB.resPath = newResPath;
 
             realShareGridResPath = resPath;
@@ -68,7 +68,7 @@ namespace ST.SLG
         /// <param name="isZWriteOn">是否开启深度写入</param>
         public void AddRes(string resPath, string matPath, int renderQueue, bool isZWriteOn)
         {
-            var newResPath = resPath.ToLower();
+            var newResPath = ConvertToResourcesPath(resPath);
 
             var isExist = IsExistRes(matPath);
             if (isExist)
@@ -92,7 +92,7 @@ namespace ST.SLG
         /// <param name="isZWriteOn">是否开启深度写入</param>
         public void AddCustomRes(string resPath, int renderQueue, bool isZWriteOn)
         {
-            var newResPath = resPath.ToLower();
+            var newResPath = ConvertToResourcesPath(resPath);
 
             var isExist = IsExistCustomRes(newResPath);
             if (isExist)
@@ -179,6 +179,36 @@ namespace ST.SLG
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// 将 Assets 完整路径转换为 Resources 相对路径（用于 Resources.Load）。
+        /// 例如：Assets/Resources/scene/common/res/slg/prefab/xxx.prefab -> scene/common/res/slg/prefab/xxx
+        /// </summary>
+        /// <param name="assetPath">Assets 完整路径</param>
+        /// <returns>Resources 相对路径（小写，无扩展名）</returns>
+        string ConvertToResourcesPath(string assetPath)
+        {
+            if (string.IsNullOrEmpty(assetPath))
+                return "";
+
+            string path = assetPath.ToLower();
+
+            // 去掉 Assets/Resources/ 前缀（不区分大小写）
+            const string resourcesPrefix = "assets/resources/";
+            if (path.StartsWith(resourcesPrefix))
+            {
+                path = path.Substring(resourcesPrefix.Length);
+            }
+
+            // 去掉文件扩展名（Resources.Load 不需要扩展名）
+            int lastDotIndex = path.LastIndexOf('.');
+            if (lastDotIndex > 0)
+            {
+                path = path.Substring(0, lastDotIndex);
+            }
+
+            return path;
         }
     }
 }
