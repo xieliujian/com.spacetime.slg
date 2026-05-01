@@ -66,60 +66,61 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 按完整资源名同步加载资源（编辑器模式使用 AssetDatabase）。
+        /// 按完整资源名同步加载资源（使用 Resources.Load）。
         /// </summary>
-        /// <param name="fullName">资源相对路径（不含 Assets/ 前缀）</param>
+        /// <param name="fullName">资源相对路径（Resources 目录下的相对路径，如 "scene/common/res/slg/logicprefab/xxx"）</param>
         /// <returns>加载到的 Unity 对象</returns>
         public UnityEngine.Object GetResource(string fullName)
         {
-            // 编辑器模式下使用 AssetDatabase 加载资源
-            // fullName 应该是相对路径，如 "scene/common/res/slg/logicprefab/xxx.prefab"
+            // 使用 Resources.Load 加载资源
+            // fullName 应该是 Resources 目录下的相对路径
+            // 例如: "scene/common/res/slg/logicprefab/slg_share_grid"
 
-            string assetPath = fullName;
-
-            // 如果已经是 Assets/ 开头，直接使用
-            if (!assetPath.StartsWith("Assets/"))
+            // 去掉扩展名（Resources.Load 不需要扩展名）
+            string resourcePath = fullName;
+            if (System.IO.Path.HasExtension(resourcePath))
             {
-                assetPath = "Assets/" + assetPath;
+                resourcePath = System.IO.Path.ChangeExtension(resourcePath, null).TrimEnd('.');
             }
 
-            // 如果没有扩展名，添加 .prefab
-            if (!System.IO.Path.HasExtension(assetPath))
-            {
-                assetPath += ".prefab";
-            }
-
-            var asset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
+            var asset = Resources.Load(resourcePath);
 
             if (asset == null)
             {
-                UnityEngine.Debug.LogWarning($"[SLGWarpEditor] Failed to load resource: {fullName} (tried: {assetPath})");
+                UnityEngine.Debug.LogWarning($"[SLGWarpEditor] Failed to load resource: {fullName} (tried: {resourcePath})");
             }
 
             return asset;
         }
 
         /// <summary>
-        /// 将预制体短名解析为资源系统使用的完整名称（返回相对路径，不含 Assets/ 前缀）。
+        /// 将预制体短名解析为资源系统使用的完整名称（返回 Resources 相对路径）。
         /// </summary>
         /// <param name="prefabName">预制体名或短路径</param>
-        /// <returns>完整资源相对路径</returns>
+        /// <returns>Resources 目录下的完整相对路径</returns>
         public string GetPrefabFullName(string prefabName)
         {
-            // 返回相对路径（不含 Assets/ 前缀）
+            // 返回 Resources 目录下的相对路径
+            // 例如: "scene/common/res/slg/logicprefab/slg_share_grid"
+
             if (prefabName.StartsWith("Assets/"))
             {
-                return prefabName.Substring(7); // 去掉 "Assets/"
+                prefabName = prefabName.Substring(7); // 去掉 "Assets/"
+            }
+
+            // 如果已经包含路径前缀，直接返回
+            if (prefabName.Contains("/"))
+            {
+                // 去掉扩展名
+                if (System.IO.Path.HasExtension(prefabName))
+                {
+                    return System.IO.Path.ChangeExtension(prefabName, null).TrimEnd('.');
+                }
+                return prefabName;
             }
 
             // 构建完整相对路径
             string fullPath = SLGDefine.SLG_LOGIC_PREFAB_PATH + prefabName;
-
-            // 如果没有扩展名，添加 .prefab
-            if (!System.IO.Path.HasExtension(fullPath))
-            {
-                fullPath += ".prefab";
-            }
 
             return fullPath;
         }
