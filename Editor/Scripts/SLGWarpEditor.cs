@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using static ST.SLG.SLGDefine;
 
 namespace ST.SLG
 {
