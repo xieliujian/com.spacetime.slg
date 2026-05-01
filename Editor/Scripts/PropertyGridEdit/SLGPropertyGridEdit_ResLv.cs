@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ST.Core.Debugger;
+using Logger = ST.Core.Logging.Logger;
 
 namespace ST.SLG
 {
@@ -38,7 +38,7 @@ namespace ST.SLG
             }
             catch
             {
-                Debugger.LogErrorF("[SceneStreamerSLG][FillSceneResLvPropertyInfo] [propPos]({0}) [objName]({1})",
+                Logger.LogErrorF("[SceneStreamerSLG][FillSceneResLvPropertyInfo] [propPos]({0}) [objName]({1})",
                     propPos, obj.name);
             }
         }
