@@ -132,6 +132,32 @@ namespace ST.SLG
             ResLvState          // 资源等级状态
         }
 
+        // ── SLGSceneCamera 默认参数 ───────────────────────────────────────
+
+        /// <summary>场景预览摄像机视野角（度）。</summary>
+        public const float s_SLGSceneCamera_Fov = 5f;
+
+        /// <summary>场景预览摄像机远裁剪面距离。</summary>
+        public const float s_SLGSceneCamera_Far = 2500f;
+
+        /// <summary>场景预览摄像机固定欧拉角 X 分量（俯仰角）。</summary>
+        public const float s_SLGSceneCamera_EulerX = 40f;
+
+        /// <summary>场景预览摄像机固定欧拉角 Y 分量（偏航角）。</summary>
+        public const float s_SLGSceneCamera_EulerY = 45f;
+
+        /// <summary>场景预览摄像机允许的最小世界高度。</summary>
+        public const float s_SLGSceneCamera_MinHeight = 200f;
+
+        /// <summary>场景预览摄像机允许的最大世界高度。</summary>
+        public const float s_SLGSceneCamera_MaxHeight = 350f;
+
+        /// <summary>场景预览摄像机平移速度。</summary>
+        public const float s_SLGSceneCamera_MoveSpeed = 50f;
+
+        /// <summary>场景预览摄像机滚轮缩放速度。</summary>
+        public const float s_SLGSceneCamera_WheelSpeed = 1f;
+
         // ── SLGGameCamera 默认参数 ────────────────────────────────────────
 
         /// <summary>游戏运行时摄像机视野角（度）。</summary>
