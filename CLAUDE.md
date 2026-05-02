@@ -51,6 +51,56 @@ SLGSceneMgr (singleton)
 - Private/internal implementation fields and methods: no comments unless the logic is non-obvious.
 - Do not write empty `/// <summary>` blocks (no blank summaries).
 
+### Constant Definition Rules
+
+**CRITICAL**: All numeric/string constants used by any class in this package must be defined in `SLGDefine.cs`, not hardcoded inline.
+
+#### `s_` Prefix = Static Field = `public static readonly`
+
+The `s_` prefix means **static field**. Always use `public static readonly`, never `const`:
+
+```csharp
+// ✅ correct
+public static readonly float  s_SLGSceneCamera_Fov = 5f;
+public static readonly string s_SLGCamera_Input_Horizontal = "Horizontal";
+
+// ❌ wrong — const conflicts with s_ static field convention
+public const float s_SLGSceneCamera_Fov = 5f;
+```
+
+#### How to Add New Constants
+
+1. Open `Runtime/Scripts/Common/SLGDefine.cs`
+2. Add a comment block and entries:
+   ```csharp
+   // ── MyClass 默认参数 ──────────────────────────────────────────────
+   /// <summary>xxx。</summary>
+   public static readonly float s_MyClass_SomeValue = 1f;
+   ```
+3. Reference in the target class as a field default value:
+   ```csharp
+   public float someField = SLGDefine.s_MyClass_SomeValue;
+   ```
+4. For `Vector3` defaults, split into X/Y/Z components (C# requires static initializer for `Vector3`, cannot use it directly as field default):
+   ```csharp
+   // SLGDefine.cs
+   public static readonly float s_MyClass_EulerX = 40f;
+   public static readonly float s_MyClass_EulerY = 45f;
+
+   // MyClass.cs
+   public Vector3 euler = new Vector3(SLGDefine.s_MyClass_EulerX, SLGDefine.s_MyClass_EulerY, 0f);
+   ```
+
+#### Naming Pattern
+
+`s_<ClassName>_<PropertyName>` — both parts PascalCase:
+
+| Field | Class | Property |
+|---|---|---|
+| `s_SLGSceneCamera_Fov` | `SLGSceneCamera` | `Fov` |
+| `s_SLGGameCamera_MinHeight` | `SLGGameCamera` | `MinHeight` |
+| `s_SLGCamera_Input_Horizontal` | shared camera | `Input_Horizontal` |
+
 ### readme Sub-documents
 
 - Every file under `readme/` must start with `[返回技术总览](../README.md)` on the second line (after the `#` heading) and end with `---\n\n[返回技术总览](../README.md)`.
