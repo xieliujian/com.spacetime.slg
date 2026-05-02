@@ -43,14 +43,40 @@ namespace ST.SLG
 
         /// <summary>
         /// 按配置中的资源路径查找自定义资源（如 SceneLine 预制）。
+        /// 自动将全路径规范化为 Resources 相对路径（去前缀、去扩展名、转小写），兼容新旧 sceneDB。
         /// </summary>
-        /// <param name="resPath">资源路径</param>
+        /// <param name="resPath">资源路径（全路径或 Resources 相对路径均可）</param>
         /// <returns>运行时资源包装，未加载返回 null</returns>
         public SLGRes FindCustomRes(string resPath)
         {
             SLGRes res = null;
             m_CustomResDict.TryGetValue(resPath, out res);
+            if (res != null)
+                return res;
+
+            var normalizedPath = NormalizeResPath(resPath);
+            if (normalizedPath != resPath)
+                m_CustomResDict.TryGetValue(normalizedPath, out res);
+
             return res;
+        }
+
+        static string NormalizeResPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return "";
+
+            path = path.ToLower();
+
+            const string prefix = "assets/resources/";
+            if (path.StartsWith(prefix))
+                path = path.Substring(prefix.Length);
+
+            int dotIdx = path.LastIndexOf('.');
+            if (dotIdx > 0)
+                path = path.Substring(0, dotIdx);
+
+            return path;
         }
 
         /// <summary>
