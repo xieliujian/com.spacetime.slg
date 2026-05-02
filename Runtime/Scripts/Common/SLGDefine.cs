@@ -179,6 +179,7 @@ namespace ST.SLG
 
         // ── SLGGameCamera 默认参数 ────────────────────────────────────────
 
+
         /// <summary>游戏运行时摄像机视野角（度）。</summary>
         public static readonly float s_SLGGameCamera_Fov = 15f;
 
@@ -205,6 +206,12 @@ namespace ST.SLG
 
         /// <summary>游戏运行时摄像机滚轮缩放速度。</summary>
         public static readonly float s_SLGGameCamera_WheelSpeed = 1f;
+
+        /// <summary>游戏运行时摄像机鼠标拖拽平移速度。</summary>
+        public static readonly float s_SLGGameCamera_DragSpeed = 0.5f;
+
+        /// <summary>游戏运行时摄像机拖拽所用的鼠标按键（0=左键，1=右键，2=中键）。</summary>
+        public static readonly int s_SLGGameCamera_DragMouseButton = 1;
 
         /// <summary>
         /// 通用无参无返回值委托，用于 SLG 模块内的回调传递
