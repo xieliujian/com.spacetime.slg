@@ -132,6 +132,35 @@ namespace ST.SLG
             ResLvState          // 资源等级状态
         }
 
+        // ── SLGGameCamera 默认参数 ────────────────────────────────────────
+
+        /// <summary>游戏运行时摄像机视野角（度）。</summary>
+        public const float s_SLGGameCamera_Fov = 15f;
+
+        /// <summary>游戏运行时摄像机近裁剪面距离。</summary>
+        public const float s_SLGGameCamera_Near = 0.3f;
+
+        /// <summary>游戏运行时摄像机远裁剪面距离。</summary>
+        public const float s_SLGGameCamera_Far = 2500f;
+
+        /// <summary>游戏运行时摄像机固定欧拉角 X 分量（俯仰角）。</summary>
+        public const float s_SLGGameCamera_EulerX = 39.6f;
+
+        /// <summary>游戏运行时摄像机固定欧拉角 Y 分量（偏航角）。</summary>
+        public const float s_SLGGameCamera_EulerY = 45f;
+
+        /// <summary>游戏运行时摄像机允许的最小世界高度。</summary>
+        public const float s_SLGGameCamera_MinHeight = 50f;
+
+        /// <summary>游戏运行时摄像机允许的最大世界高度。</summary>
+        public const float s_SLGGameCamera_MaxHeight = 300f;
+
+        /// <summary>游戏运行时摄像机平移速度。</summary>
+        public const float s_SLGGameCamera_MoveSpeed = 50f;
+
+        /// <summary>游戏运行时摄像机滚轮缩放速度。</summary>
+        public const float s_SLGGameCamera_WheelSpeed = 1f;
+
         /// <summary>
         /// 通用无参无返回值委托，用于 SLG 模块内的回调传递
         /// </summary>
