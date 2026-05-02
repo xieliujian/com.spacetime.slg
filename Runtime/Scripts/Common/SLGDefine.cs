@@ -132,6 +132,25 @@ namespace ST.SLG
             ResLvState          // 资源等级状态
         }
 
+        // ── 摄像机输入轴名称 ──────────────────────────────────────────────
+
+        /// <summary>Unity Input 水平轴名称。</summary>
+        public const string s_SLGCamera_Input_Horizontal = "Horizontal";
+
+        /// <summary>Unity Input 垂直轴名称。</summary>
+        public const string s_SLGCamera_Input_Vertical = "Vertical";
+
+        /// <summary>Unity Input 鼠标滚轮轴名称。</summary>
+        public const string s_SLGCamera_Input_MouseScrollWheel = "Mouse ScrollWheel";
+
+        // ── 摄像机初始位置 ────────────────────────────────────────────────
+
+        /// <summary>摄像机初始位置 X 分量。</summary>
+        public const float s_SLGCamera_InitPosX = 0f;
+
+        /// <summary>摄像机初始位置 Z 分量。</summary>
+        public const float s_SLGCamera_InitPosZ = 0f;
+
         // ── SLGSceneCamera 默认参数 ───────────────────────────────────────
 
         /// <summary>场景预览摄像机视野角（度）。</summary>

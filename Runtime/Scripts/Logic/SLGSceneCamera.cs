@@ -11,11 +11,7 @@ namespace ST.SLG
     [ExecuteInEditMode]
     public class SLGSceneCamera : MonoBehaviour
     {
-        static string s_Horizontal        = "Horizontal";
-        static string s_Vertical          = "Vertical";
-        static string s_MouseScrollWheel  = "Mouse ScrollWheel";
-
-        static Vector3 s_CamInitPos = new Vector3(0f, 0f, 0f);
+        static readonly Vector3 s_CamInitPos = new Vector3(SLGDefine.s_SLGCamera_InitPosX, 0f, SLGDefine.s_SLGCamera_InitPosZ);
 
         Camera m_Cam;
 
@@ -105,9 +101,9 @@ namespace ST.SLG
         {
             if (Application.isPlaying)
             {
-                m_InputHorizontal = Input.GetAxis(s_Horizontal);
-                m_InputVertical   = Input.GetAxis(s_Vertical);
-                m_InputScroll     = Input.GetAxis(s_MouseScrollWheel);
+                m_InputHorizontal = Input.GetAxis(SLGDefine.s_SLGCamera_Input_Horizontal);
+                m_InputVertical   = Input.GetAxis(SLGDefine.s_SLGCamera_Input_Vertical);
+                m_InputScroll     = Input.GetAxis(SLGDefine.s_SLGCamera_Input_MouseScrollWheel);
             }
         }
     }

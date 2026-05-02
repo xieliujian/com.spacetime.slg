@@ -8,10 +8,6 @@ namespace ST.SLG
     /// </summary>
     public class SLGGameCamera : MonoBehaviour
     {
-        static readonly string s_Horizontal       = "Horizontal";
-        static readonly string s_Vertical         = "Vertical";
-        static readonly string s_MouseScrollWheel = "Mouse ScrollWheel";
-
         Camera m_Cam;
 
         float m_InputHorizontal;
@@ -60,9 +56,9 @@ namespace ST.SLG
 
         void RefreshInput()
         {
-            m_InputHorizontal = Input.GetAxis(s_Horizontal);
-            m_InputVertical   = Input.GetAxis(s_Vertical);
-            m_InputScroll     = Input.GetAxis(s_MouseScrollWheel);
+            m_InputHorizontal = Input.GetAxis(SLGDefine.s_SLGCamera_Input_Horizontal);
+            m_InputVertical   = Input.GetAxis(SLGDefine.s_SLGCamera_Input_Vertical);
+            m_InputScroll     = Input.GetAxis(SLGDefine.s_SLGCamera_Input_MouseScrollWheel);
         }
 
         void RefreshCamera()
