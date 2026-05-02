@@ -74,7 +74,7 @@ namespace ST.SLG
                 resourcePath = resourcePath.Substring(k_AssetsResourcesPrefix.Length);
             }
 
-            var asset = Resources.Load(resourcePath);
+            var asset = Resources.Load<GameObject>(resourcePath);
             if (asset == null)
             {
                 Debug.LogWarning($"[SLGWarpEditor] Failed to load resource: {fullName} (tried: {resourcePath})");
