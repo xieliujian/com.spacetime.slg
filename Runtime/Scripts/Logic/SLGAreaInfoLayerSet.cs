@@ -152,7 +152,7 @@ namespace ST.SLG
             layer.SetAreaPropertyInfoLayerDB(layerDB);
             layer.SetMesh(res.mesh);
             layer.SetMat(res.mat);
-            layer.CalcInitScaleMatrix(res.meshScale);
+            layer.CalcInitScaleMatrix(res.meshScale, res.meshRotation);
             layer.Init();
 
             m_AreaLayerDict.Add(layerDB.layerID, layer);
@@ -169,7 +169,7 @@ namespace ST.SLG
             layer.SetAreaGridSetDB(m_AreaGridSetDB);
             layer.SetMesh(res.mesh);
             layer.SetMat(res.mat);
-            layer.CalcInitScaleMatrix(res.meshScale);
+            layer.CalcInitScaleMatrix(res.meshScale, res.meshRotation);
             layer.Init();
 
             m_AreaLayerDict.Add(layerDB.layerID, layer);

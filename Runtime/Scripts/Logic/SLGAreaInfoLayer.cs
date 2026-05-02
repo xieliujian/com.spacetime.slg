@@ -65,16 +65,26 @@ namespace ST.SLG
         }
 
         /// <summary>
-        /// 根据网格尺寸计算初始缩放矩阵，使网格与格子单位尺寸对齐。
+        /// 根据网格尺寸和旋转计算初始变换矩阵，使网格与格子单位尺寸对齐并保留 prefab 自带旋转。
         /// </summary>
         /// <param name="meshScale">网格的原始尺寸。</param>
-        public void CalcInitScaleMatrix(Vector3 meshScale)
+        /// <param name="meshRotation">网格的本地旋转（prefab 自带朝向）。</param>
+        public void CalcInitScaleMatrix(Vector3 meshScale, Quaternion meshRotation)
         {
             Vector3 scale = Vector3.one;
             scale.x = meshScale.x / SLGDefine.s_SLG_Grid_UnitSize;
             scale.z = meshScale.z / SLGDefine.s_SLG_Grid_UnitSize;
 
-            m_InitScaleMatrix = Matrix4x4.Scale(scale);
+            m_InitScaleMatrix = Matrix4x4.TRS(Vector3.zero, meshRotation, scale);
+        }
+
+        /// <summary>
+        /// 根据网格尺寸计算初始缩放矩阵（无旋转版本，向后兼容）。
+        /// </summary>
+        /// <param name="meshScale">网格的原始尺寸。</param>
+        public void CalcInitScaleMatrix(Vector3 meshScale)
+        {
+            CalcInitScaleMatrix(meshScale, Quaternion.identity);
         }
 
         /// <summary>

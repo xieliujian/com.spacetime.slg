@@ -21,6 +21,8 @@ namespace ST.SLG
 
         Vector3 m_MeshScale;
 
+        Quaternion m_MeshRotation = Quaternion.identity;
+
         /// <summary>
         /// 共享的网格数据（可对应共享格或合批用 Mesh）。
         /// </summary>
@@ -43,6 +45,14 @@ namespace ST.SLG
         public Vector3 meshScale
         {
             get { return m_MeshScale; }
+        }
+
+        /// <summary>
+        /// MeshRenderer 所在子物体的本地旋转（如 prefab 自带的朝向偏转）。
+        /// </summary>
+        public Quaternion meshRotation
+        {
+            get { return m_MeshRotation; }
         }
 
         /// <summary>
@@ -108,6 +118,7 @@ namespace ST.SLG
             m_Mesh = meshFilter.sharedMesh;
             m_Mat = render.sharedMaterial;
             m_MeshScale = render.transform.localScale;
+            m_MeshRotation = render.transform.localRotation;
 
             // 批绘需要时开启 GPU Instancing
             if (!m_Mat.enableInstancing)
