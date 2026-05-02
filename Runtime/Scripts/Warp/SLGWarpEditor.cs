@@ -53,16 +53,25 @@ namespace ST.SLG
         /// </summary>
         public Camera GetCurrentActiveCamera() => m_Camera;
 
+        const string k_AssetsResourcesPrefix = "Assets/Resources/";
+
         /// <summary>
-        /// 按 Resources 相对路径同步加载资源。
+        /// 按资源路径同步加载资源（支持 AssetDatabase 全路径或 Resources 相对路径）。
+        /// 会自动去掉 "Assets/Resources/" 前缀和文件扩展名，再调用 Resources.Load。
         /// </summary>
-        /// <param name="fullName">Resources 目录下的相对路径（如 "scene/common/res/slg/logicprefab/xxx"）</param>
+        /// <param name="fullName">AssetDatabase 全路径或 Resources 相对路径</param>
         public UnityEngine.Object GetResource(string fullName)
         {
             string resourcePath = fullName;
+
             if (Path.HasExtension(resourcePath))
             {
                 resourcePath = Path.ChangeExtension(resourcePath, null).TrimEnd('.');
+            }
+
+            if (resourcePath.StartsWith(k_AssetsResourcesPrefix, System.StringComparison.OrdinalIgnoreCase))
+            {
+                resourcePath = resourcePath.Substring(k_AssetsResourcesPrefix.Length);
             }
 
             var asset = Resources.Load(resourcePath);
