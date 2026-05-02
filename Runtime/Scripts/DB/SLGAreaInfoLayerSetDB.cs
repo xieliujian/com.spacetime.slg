@@ -56,16 +56,38 @@ namespace ST.SLG
             SLGDefine.SLGInfoLayerType infoLayerType, 
             SLGDefine.SLGAreaGridPropertyLayerType areaPropertyLayerType, Vector2Int propertyTexSeq)
         {
-            var lowResPath = resPath.ToLower();
+            var normalizedPath = NormalizeResPath(resPath);
 
             if (areaPropertyLayerType == SLGDefine.SLGAreaGridPropertyLayerType.Invalid)
             {
-                CreateAreaInfoLayerDB(layerID, lowResPath, infoLayerType);
+                CreateAreaInfoLayerDB(layerID, normalizedPath, infoLayerType);
             }
             else
             {
-                CreateAreaPropertyInfoLayerDB(layerID, lowResPath, infoLayerType, areaPropertyLayerType, propertyTexSeq);
+                CreateAreaPropertyInfoLayerDB(layerID, normalizedPath, infoLayerType, areaPropertyLayerType, propertyTexSeq);
             }
+        }
+
+        /// <summary>
+        /// 将资源路径规范化为 Resources.Load 所需的相对路径（去前缀、去扩展名、转小写）。
+        /// 与 SLGSceneResDB.ConvertToResourcesPath 保持一致，确保 layer.resPath 与 customResDBList 的 key 相同。
+        /// </summary>
+        static string NormalizeResPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return "";
+
+            path = path.ToLower();
+
+            const string prefix = "assets/resources/";
+            if (path.StartsWith(prefix))
+                path = path.Substring(prefix.Length);
+
+            int dotIdx = path.LastIndexOf('.');
+            if (dotIdx > 0)
+                path = path.Substring(0, dotIdx);
+
+            return path;
         }
 
         /// <summary>
