@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using static ST.SLG.SLGDefine;
 
 namespace ST.SLG
 {
