@@ -6,6 +6,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Unity package (`com.spacetime.slg`, namespace `ST.SLG`) implementing a grid-based SLG (Strategy/Simulation) scene system. It targets Unity 2020.3+ and is structured as three assembly definitions: runtime, editor, and shaders.
 
+## Git Workflow Rules
+
+### This Is a Git Submodule
+
+This repository is used as a git submodule inside `d:\xieliujian\com.spacetime.slg.sample`.
+
+#### CRITICAL: Always Push to Remote Before Updating the Submodule
+
+After committing changes here, **always push to `origin` (remote) first**, then update the submodule via `git pull origin main`. Never use a local path pull as a shortcut:
+
+```bash
+# ✅ correct workflow
+cd D:\xieliujian\com.spacetime.slg\Packages\com.spacetime.slg
+git add .
+git commit -m "feat: your changes"
+git push origin main          # push to remote FIRST
+
+# then in main project:
+cd d:\xieliujian\com.spacetime.slg.sample\Packages\com.spacetime.slg
+git pull origin main          # pull from remote only
+```
+
+```bash
+# ❌ wrong — never do this
+git pull D:\xieliujian\com.spacetime.slg\Packages\com.spacetime.slg main
+```
+
+**Why**: Pulling from a local path skips `.meta` file generation by the remote. When `git pull origin main` is later run, Unity-generated `.meta` files (e.g. `SLGGameCamera.cs.meta`) will conflict with the remote's tracked `.meta` files, causing:
+```
+error: The following untracked working tree files would be overwritten by merge
+```
+
 ## Build & Development
 
 This is a Unity package — there are no standalone build commands. Development happens inside a Unity project that references this package. The three assembly definitions compile independently:
