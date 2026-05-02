@@ -41,7 +41,7 @@
 
             HLSLPROGRAM
 
-            #pragma target 4.5
+            #pragma target 3.5
             #pragma multi_compile_instancing
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -58,5 +58,5 @@
         }
     }
 
-    FallBack "Hidden/InternalErrorShader"
+    FallBack "Universal Render Pipeline/Unlit"
 }

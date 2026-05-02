@@ -62,7 +62,7 @@
 
             HLSLPROGRAM
 
-            #pragma target 4.5
+            #pragma target 3.5
             #pragma multi_compile_instancing
 
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
@@ -86,5 +86,5 @@
         }
     }
 
-    FallBack "Hidden/InternalErrorShader"
+    FallBack "Universal Render Pipeline/Unlit"
 }
