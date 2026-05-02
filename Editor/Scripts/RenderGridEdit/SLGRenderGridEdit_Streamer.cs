@@ -140,7 +140,7 @@ namespace ST.SLG
                 var resPath = SLGEditDefine.s_SLGInfoPrefab_PathPrefix + resName + SLGEditDefine.s_Prefab_Suffix;
                 var resPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(resPath);
                 if (resPrefab == null)
-                    return;
+                    continue;
 
                 sceneDB.FillAreaInfoLayerDB(layerID, resPath, renderQueue, isZWriteOn, infoLayerType, areaPropertyLayerType, propertyTexSeq);
             }
