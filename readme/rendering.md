@@ -100,6 +100,8 @@ SLGSceneMgr.Instance.FillMiniMapTexture(tex, SLGInfoLayer.CampInfo);
 
 用于绘制单位间的连线（如攻击线、路径线）。
 
+详细设计见 → [信息层线段同屏 N 条线段设计](../readme/scene-line-layer.md)
+
 - 以 `uint uniqueID` 标识每条线段，支持世界坐标或逻辑坐标输入
 - 内部使用 `SLGSceneLineBlock` 对象池，每块最多容纳 **300 条线段**
 - 区分友方（`enemy=false`）和敌方（`enemy=true`），使用不同材质

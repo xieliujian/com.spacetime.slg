@@ -28,6 +28,7 @@
 | 文档 | 说明 |
 |------|------|
 | [Tile GPU Instancing 合批设计](readme/tile-instancing.md) | 不同 Tile Prefab 如何按材质合批、UV 子区域提取、shareGrid Mesh 替换策略及其成立前提 |
+| [信息层线段同屏 N 条线段设计](readme/scene-line-layer.md) | 线段层如何通过 ID 映射、300 槽位分块与 Instancing 支持同屏 N 条线段 |
 
 ---
 
