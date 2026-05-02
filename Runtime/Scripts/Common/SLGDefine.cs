@@ -135,76 +135,76 @@ namespace ST.SLG
         // ── 摄像机输入轴名称 ──────────────────────────────────────────────
 
         /// <summary>Unity Input 水平轴名称。</summary>
-        public const string s_SLGCamera_Input_Horizontal = "Horizontal";
+        public static readonly string s_SLGCamera_Input_Horizontal = "Horizontal";
 
         /// <summary>Unity Input 垂直轴名称。</summary>
-        public const string s_SLGCamera_Input_Vertical = "Vertical";
+        public static readonly string s_SLGCamera_Input_Vertical = "Vertical";
 
         /// <summary>Unity Input 鼠标滚轮轴名称。</summary>
-        public const string s_SLGCamera_Input_MouseScrollWheel = "Mouse ScrollWheel";
+        public static readonly string s_SLGCamera_Input_MouseScrollWheel = "Mouse ScrollWheel";
 
         // ── 摄像机初始位置 ────────────────────────────────────────────────
 
         /// <summary>摄像机初始位置 X 分量。</summary>
-        public const float s_SLGCamera_InitPosX = 0f;
+        public static readonly float s_SLGCamera_InitPosX = 0f;
 
         /// <summary>摄像机初始位置 Z 分量。</summary>
-        public const float s_SLGCamera_InitPosZ = 0f;
+        public static readonly float s_SLGCamera_InitPosZ = 0f;
 
         // ── SLGSceneCamera 默认参数 ───────────────────────────────────────
 
         /// <summary>场景预览摄像机视野角（度）。</summary>
-        public const float s_SLGSceneCamera_Fov = 5f;
+        public static readonly float s_SLGSceneCamera_Fov = 5f;
 
         /// <summary>场景预览摄像机远裁剪面距离。</summary>
-        public const float s_SLGSceneCamera_Far = 2500f;
+        public static readonly float s_SLGSceneCamera_Far = 2500f;
 
         /// <summary>场景预览摄像机固定欧拉角 X 分量（俯仰角）。</summary>
-        public const float s_SLGSceneCamera_EulerX = 40f;
+        public static readonly float s_SLGSceneCamera_EulerX = 40f;
 
         /// <summary>场景预览摄像机固定欧拉角 Y 分量（偏航角）。</summary>
-        public const float s_SLGSceneCamera_EulerY = 45f;
+        public static readonly float s_SLGSceneCamera_EulerY = 45f;
 
         /// <summary>场景预览摄像机允许的最小世界高度。</summary>
-        public const float s_SLGSceneCamera_MinHeight = 200f;
+        public static readonly float s_SLGSceneCamera_MinHeight = 200f;
 
         /// <summary>场景预览摄像机允许的最大世界高度。</summary>
-        public const float s_SLGSceneCamera_MaxHeight = 350f;
+        public static readonly float s_SLGSceneCamera_MaxHeight = 350f;
 
         /// <summary>场景预览摄像机平移速度。</summary>
-        public const float s_SLGSceneCamera_MoveSpeed = 50f;
+        public static readonly float s_SLGSceneCamera_MoveSpeed = 50f;
 
         /// <summary>场景预览摄像机滚轮缩放速度。</summary>
-        public const float s_SLGSceneCamera_WheelSpeed = 1f;
+        public static readonly float s_SLGSceneCamera_WheelSpeed = 1f;
 
         // ── SLGGameCamera 默认参数 ────────────────────────────────────────
 
         /// <summary>游戏运行时摄像机视野角（度）。</summary>
-        public const float s_SLGGameCamera_Fov = 15f;
+        public static readonly float s_SLGGameCamera_Fov = 15f;
 
         /// <summary>游戏运行时摄像机近裁剪面距离。</summary>
-        public const float s_SLGGameCamera_Near = 0.3f;
+        public static readonly float s_SLGGameCamera_Near = 0.3f;
 
         /// <summary>游戏运行时摄像机远裁剪面距离。</summary>
-        public const float s_SLGGameCamera_Far = 2500f;
+        public static readonly float s_SLGGameCamera_Far = 2500f;
 
         /// <summary>游戏运行时摄像机固定欧拉角 X 分量（俯仰角）。</summary>
-        public const float s_SLGGameCamera_EulerX = 39.6f;
+        public static readonly float s_SLGGameCamera_EulerX = 39.6f;
 
         /// <summary>游戏运行时摄像机固定欧拉角 Y 分量（偏航角）。</summary>
-        public const float s_SLGGameCamera_EulerY = 45f;
+        public static readonly float s_SLGGameCamera_EulerY = 45f;
 
         /// <summary>游戏运行时摄像机允许的最小世界高度。</summary>
-        public const float s_SLGGameCamera_MinHeight = 50f;
+        public static readonly float s_SLGGameCamera_MinHeight = 50f;
 
         /// <summary>游戏运行时摄像机允许的最大世界高度。</summary>
-        public const float s_SLGGameCamera_MaxHeight = 300f;
+        public static readonly float s_SLGGameCamera_MaxHeight = 300f;
 
         /// <summary>游戏运行时摄像机平移速度。</summary>
-        public const float s_SLGGameCamera_MoveSpeed = 50f;
+        public static readonly float s_SLGGameCamera_MoveSpeed = 50f;
 
         /// <summary>游戏运行时摄像机滚轮缩放速度。</summary>
-        public const float s_SLGGameCamera_WheelSpeed = 1f;
+        public static readonly float s_SLGGameCamera_WheelSpeed = 1f;
 
         /// <summary>
         /// 通用无参无返回值委托，用于 SLG 模块内的回调传递
