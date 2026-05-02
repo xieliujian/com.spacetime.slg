@@ -38,7 +38,7 @@ namespace ST.SLG
         /// </summary>
         public override void Init()
         {
-            m_Render = true;
+            m_Render = false;
 
             InitPropertyInfoBlockDB();
             InitMatPropBlock();
