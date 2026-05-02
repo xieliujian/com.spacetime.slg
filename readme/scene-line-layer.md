@@ -230,7 +230,36 @@ Shader 端通过 `UNITY_ACCESS_INSTANCED_PROP(Props, ...)` 逐实例读取，不
 
 ---
 
-## 8) 性能边界与约束
+## 8) 信息格子层数据存储与旋转支持（与地图层对比）
+
+信息格子层并不是单一模式，存在“运行时写入型”和“预计算入库型”两条路径。
+
+- 运行时写入型：`SLGAreaGridInfoLayer`
+  - 初始化时仅创建固定 100 格的 `m_MatrixList/m_ColorList`，矩阵先填 `s_UnVisMatrix`
+  - 运行时由 `AddGridInfo/RemoveGridInfo` 按逻辑格实时改写矩阵与颜色
+  - 特点是响应动态标记（阵营、火力、路径点）快，但不依赖预烘焙 block DB
+
+- 预计算入库型：`SLGAreaPropertyInfoLayer`
+  - 编辑器阶段将每个 Area 的 `matrixList + uvScaleOffsetList` 写入 `SLGAreaPropertyInfoBlockDB`
+  - 运行时按 `blockList[areaIndex]` 直接取块绘制
+  - 特点与地图层更接近，偏静态展示（如资源等级）
+
+因此，“信息格子层是否像地图层一样直接存 UV+Matrix 到 DB”取决于具体子类型：
+
+- `SLGAreaGridInfoLayer`：不是（运行时写入）
+- `SLGAreaPropertyInfoLayer`：是（预计算入库）
+
+### Prefab 资源旋转支持
+
+信息层支持 prefab 自带旋转。资源初始化时会记录 `meshRotation`（来自 `MeshRenderer` 所在节点的 `localRotation`），随后在信息层基类计算初始矩阵时参与 TRS：
+
+`m_InitScaleMatrix = Matrix4x4.TRS(Vector3.zero, meshRotation, scale)`
+
+这意味着格子叠加渲染会保留 prefab 的朝向，不会被强制重置为 `Quaternion.identity`。
+
+---
+
+## 9) 性能边界与约束
 
 ### 边界 1：每块固定 300
 
@@ -250,7 +279,7 @@ Shader 端通过 `UNITY_ACCESS_INSTANCED_PROP(Props, ...)` 逐实例读取，不
 
 ---
 
-## 9) 与“信息层”关系的落地结论
+## 10) 与“信息层”关系的落地结论
 
 - 格子信息层负责“每格状态表达”（颜色/属性）
 - 线段层负责“跨格子关系表达”（起点-终点连线）

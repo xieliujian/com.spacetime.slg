@@ -94,7 +94,7 @@ SLGSceneDB（.asset）写入磁盘
 
 调用链：`sceneDB.FillAreaMapDB()` → 按世界坐标定位 Area → `resDB.AddRes()` 注册资源 → `areaDB.mapLayerSet.FillRenderBlockDB()` 写入块数据
 
-> 不同 Prefab 如何按材质合批、UV 子区域如何提取、运行时为何替换为 shareGrid Mesh，详见 → [Tile GPU Instancing 合批设计](tile-instancing.md)
+> 地图层资源如何按材质合批、UV 子区域如何提取、运行时为何替换为 shareGrid Mesh，详见 → [地图层 GPU Instancing 合批设计](map-layer-instancing.md)
 
 #### FillDynamicMapRenderLayer（动态层）
 

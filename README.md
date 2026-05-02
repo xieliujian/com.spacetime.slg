@@ -8,27 +8,37 @@
 
 ---
 
-## 技术文档
+## 技术文档（核心入口）
+
+> 建议先读这 4 篇，建立整体心智模型；其余专题再按需展开。
 
 | 文档 | 说明 |
 |------|------|
 | [架构总览](readme/architecture.md) | 模块划分、组件层级、单例入口、引擎抽象层 |
 | [网格坐标系统](readme/grid-system.md) | 逻辑坐标、世界坐标、Area 分区、常量定义 |
-| [数据层（DB）](readme/db-layer.md) | ScriptableObject 数据结构、序列化关系 |
 | [渲染系统](readme/rendering.md) | 地图层渲染、信息图层、场景线段、GPU Instancing、视锥剔除 |
 | [Editor 工具](readme/editor-tools.md) | 属性网格编辑、渲染网格编辑、动态对象组、场景流式导入导出 |
-| [场景流化数据](readme/streaming.md) | 流化导出流程、DB 数据结构、资源路径转换、与运行时的边界 |
 
 ---
 
-## 设计原理
+## 核心设计（必读）
 
-> 记录那些「看代码才能理解的 Why」——不明显的设计决策与背后的约束。
+> 记录全项目最核心、需要结合代码理解的 Why 与关键约束；建议按 01 → 03 顺序阅读。
+
+| 优先级 | 文档 | 说明 |
+|------|------|------|
+| P0 | [01 地图层 GPU Instancing 合批设计](readme/map-layer-instancing.md) | 地图层资源如何按材质合批、UV 子区域提取、shareGrid Mesh 替换策略及其成立前提 |
+| P0 | [02 信息层线段同屏 N 条线段设计](readme/scene-line-layer.md) | 线段层如何通过 ID 映射、300 槽位分块与 Instancing 支持同屏 N 条线段 |
+| P0 | [03 信息格子层设计](readme/info-grid-layer-design.md) | 信息格子层的双路径数据模型（运行时写入 vs 预计算入库）与 prefab 旋转支持 |
+
+---
+
+## 技术专题
 
 | 文档 | 说明 |
 |------|------|
-| [Tile GPU Instancing 合批设计](readme/tile-instancing.md) | 不同 Tile Prefab 如何按材质合批、UV 子区域提取、shareGrid Mesh 替换策略及其成立前提 |
-| [信息层线段同屏 N 条线段设计](readme/scene-line-layer.md) | 线段层如何通过 ID 映射、300 槽位分块与 Instancing 支持同屏 N 条线段 |
+| [数据层（DB）](readme/db-layer.md) | ScriptableObject 数据结构、序列化关系 |
+| [场景流化数据](readme/streaming.md) | 流化导出流程、DB 数据结构、资源路径转换、与运行时的边界 |
 
 ---
 

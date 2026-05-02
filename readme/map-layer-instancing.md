@@ -1,4 +1,4 @@
-# Tile GPU Instancing 合批设计
+# 地图层 GPU Instancing 合批设计
 
 [返回技术总览](../README.md)
 
