@@ -10,7 +10,15 @@ com.spacetime.slg/
 │   ├── Common/        # 常量定义、工具函数
 │   ├── DB/            # 纯数据层（ScriptableObject）
 │   └── Logic/         # 运行时逻辑与渲染
-├── Editor/Scripts/    # Unity Editor 工具
+├── Editor/Scripts/
+│   ├── Define/        # 编辑器全局常量（SLGEditDefine）
+│   ├── Config/        # 图层配置（SLGLayerConfig / SLGLayerConfigMgr）
+│   ├── RenderGridEdit/    # 渲染网格编辑工具
+│   ├── PropertyGridEdit/  # 属性网格编辑工具
+│   ├── DynamicObjGroupEdit/ # 动态对象组编辑工具
+│   ├── Inspector/     # 自定义 Inspector
+│   ├── Utils/         # 编辑器通用工具函数（SLGEditUtils）
+│   └── Tools/         # 独立辅助工具（HexColor Inspector 等）
 └── Shaders/           # 自定义 Shader
 ```
 

@@ -25,19 +25,67 @@
 
 ## 信息图层（Info Layer）
 
-叠加在地形之上，用于显示阵营、火力、路径点等游戏信息。
+叠加在地形之上，分为两种完全不同的数据驱动模式：
 
-### SLGAreaGridInfoLayer
+| | SLGAreaGridInfoLayer | SLGAreaPropertyInfoLayer |
+|---|---|---|
+| **典型用途** | 阵营、火力、路径点等动态标记 | 资源等级（ResLvProperty）等静态属性展示 |
+| **数据来源** | 运行时逻辑层逐格写入 | 编辑器导出阶段预计算，存入 DB |
+| **Init 之后** | 100 格矩阵全为 `s_UnVisMatrix`，颜色全为 `Color.clear`，空白等待 | 直接从 `blockList[areaIndex]` 取出本 Area 数据块，所有格子就绪 |
+| **运行时写入** | `AddGridInfo / RemoveGridInfo` 逐格更新 | 无，只读 |
+| **GPU 提交** | 变更后需调 `SubmitGPUByLayer` 才推送颜色数组 | Init 时一次性写入 MaterialPropertyBlock，之后无需再提交 |
+| **整层开关** | 无（逐格增删控制） | `SetAreaPropertyLayerVisible(layerType, bool)` 广播全部 25 个 Area |
 
-- 以逻辑坐标为 Key，存储每格的颜色
-- 调用 `AddAreaGridInfo(layerType, logicPos, color)` 写入，`SubmitGPUByLayer(layerType)` 后生效
-- 内部重建 Mesh（顶点着色），通过 `Graphics.DrawMesh` 渲染
+---
 
-### SLGAreaPropertyInfoLayer
+### SLGAreaGridInfoLayer — 动态信息层
 
-- 按 `ResLvType` 分块，每块对应一种资源等级的颜色与矩阵集合
-- 数据来自 `SLGAreaPropertyInfoLayerDB`，初始化时一次性加载
-- 可见性由 `SetAreaPropertyLayerVisible` 控制
+`Init()` 预分配 100 格的矩阵列表与颜色列表，全部置为不可见默认值：
+
+```csharp
+InitMatrixList();  // 100 格全填 s_UnVisMatrix（缩放为 0，GPU 剔除）
+InitColorList();   // 100 格全填 Color.clear
+```
+
+逻辑层通过公开 API 逐格操作：
+
+```csharp
+// 添加单格颜色标记（标脏，不立即推送 GPU）
+SLGSceneMgr.Instance.AddAreaGridInfo(SLGInfoLayer.CampInfo, logicPos, color);
+
+// 批量改完后统一提交
+SLGSceneMgr.Instance.SubmitGPUByLayer(SLGInfoLayer.CampInfo);
+
+// 移除单格标记
+SLGSceneMgr.Instance.RemoveAreaGridInfo(SLGInfoLayer.CampInfo, logicPos);
+```
+
+`Render()` 仅在 `m_DataExistDict.Count > 0` 时才调用 `DrawMeshInstanced`，无标记时跳过绘制。
+
+---
+
+### SLGAreaPropertyInfoLayer — 静态属性层
+
+数据在**编辑器导出**阶段由 `FillAreaResLvStateLayer` 全量预计算并写入 `SLGAreaPropertyInfoLayerDB.blockList`（25 个 Area 各一个 Block，每 Block 含 100 格的矩阵与 UV 偏移）。
+
+`Init()` 直接取出对应 Block 并写入 MaterialPropertyBlock，之后只读：
+
+```csharp
+m_PropertyInfoBlockDB = blockList[m_AreaIndex];              // 取本 Area 的数据块
+m_MatPropBlock.SetVectorArray(s_SLG_Shader_SceneObj_UvScaleOffsetId,
+    m_PropertyInfoBlockDB.uvScaleOffsetList);                // UV 一次性写入
+```
+
+无资源等级的格子在导出时已填入 `s_UnVisMatrix`，运行时 GPU 自动剔除，无需任何逻辑干预。
+
+整层显示/隐藏：
+
+```csharp
+// 广播给全部 25 个 Area 的对应层，一次调用切全场景
+SLGSceneMgr.Instance.SetAreaPropertyLayerVisible(SLGInfoLayer.ResLvProperty, true);
+```
+
+---
 
 ### 小地图纹理
 

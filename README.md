@@ -17,6 +17,17 @@
 | [数据层（DB）](readme/db-layer.md) | ScriptableObject 数据结构、序列化关系 |
 | [渲染系统](readme/rendering.md) | 地图层渲染、信息图层、场景线段、GPU Instancing、视锥剔除 |
 | [Editor 工具](readme/editor-tools.md) | 属性网格编辑、渲染网格编辑、动态对象组、场景流式导入导出 |
+| [场景流化数据](readme/streaming.md) | 流化导出流程、DB 数据结构、资源路径转换、与运行时的边界 |
+
+---
+
+## 设计原理
+
+> 记录那些「看代码才能理解的 Why」——不明显的设计决策与背后的约束。
+
+| 文档 | 说明 |
+|------|------|
+| [Tile GPU Instancing 合批设计](readme/tile-instancing.md) | 不同 Tile Prefab 如何按材质合批、UV 子区域提取、shareGrid Mesh 替换策略及其成立前提 |
 
 ---
 

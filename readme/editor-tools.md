@@ -74,16 +74,30 @@
 核心类：
 - `SLGSceneStreamer`
 
-作用：
-- 与 Render/Property 编辑器联动
-- 在大场景下按区域导入/导出场景数据，避免一次性全量处理
+详细说明见 → [场景流化数据](../readme/streaming.md)
+
+简要作用：
+- 总入口 `ExportSceneDB()` 串联渲染层与属性层采集，一键生成 `SLGSceneDB` `.asset`
+- 输出 `outResPathList` 供打包工具收集所有 Prefab/材质依赖
+- `CreateSLGAllRes()` 将依赖资源实例化到场景根节点（默认失活）用于 AB 打包引用
 
 ---
 
-## 6) 辅助工具
+## 6) 常量定义（Define）
 
-- `SLGEditUtils`：编辑态通用工具函数
-- `SLGTools_HexColorInspector`：HexColor 工具自定义 Inspector
+核心类：
+- `SLGEditDefine`（`Editor/Scripts/Define/`）
+
+作用：
+- 汇总 Editor 脚本中所有只读配置，统一管理路径、节点名、Excel 配置等
+- 命名规则：`public static readonly`，字段名格式为 `s_<Category>_<Property>`（PascalCase）
+
+---
+
+## 7) 辅助工具
+
+- `SLGEditUtils`（`Editor/Scripts/Utils/`）：编辑态通用工具函数
+- `SLGTools_HexColorInspector`（`Editor/Scripts/Tools/`）：HexColor 工具自定义 Inspector
 
 ---
 
