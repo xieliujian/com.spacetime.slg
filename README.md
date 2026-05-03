@@ -23,13 +23,14 @@
 
 ## 核心设计（必读）
 
-> 记录全项目最核心、需要结合代码理解的 Why 与关键约束；建议按 01 → 03 顺序阅读。
+> 记录全项目最核心、需要结合代码理解的 Why 与关键约束；建议按 01 → 04 顺序阅读。
 
 | 优先级 | 文档 | 说明 |
 |------|------|------|
 | P0 | [01 地图层 GPU Instancing 合批设计](readme/map-layer-instancing.md) | 地图层资源如何按材质合批、UV 子区域提取、shareGrid Mesh 替换策略及其成立前提 |
 | P0 | [02 信息层线段同屏 N 条线段设计](readme/scene-line-layer.md) | 线段层如何通过 ID 映射、300 槽位分块与 Instancing 支持同屏 N 条线段 |
 | P0 | [03 信息格子层设计](readme/info-grid-layer-design.md) | 信息格子层的双路径数据模型（运行时写入 vs 预计算入库）与 prefab 旋转支持 |
+| P0 | [04 层级的混合处理](readme/layer-blend.md) | 各层如何通过 RenderQueue 偏移保证前后遮挡，IsOpacity / IsZWrite 的作用，以及为何相同 RenderQueue 下 DrawInstance 顺序无效 |
 
 ---
 
