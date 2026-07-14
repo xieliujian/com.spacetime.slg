@@ -15,19 +15,19 @@ namespace ST.SLG
     public class SLGEditUtils
     {
 
-        [MenuItem("MHT/SLG/同步场景渲染根节点", false, 142)]
+        [MenuItem("SpaceTime/SLG/同步场景渲染根节点", false, 142)]
         static void CreateOrSyncSceneRenderRootNode()
         {
             SLGRenderGridEdit.CreateOrSyncSceneRenderRootNode();
         }
 
-        [MenuItem("MHT/SLG/同步场景属性根节点", false, 143)]
+        [MenuItem("SpaceTime/SLG/同步场景属性根节点", false, 143)]
         static void CreateOrSyncScenePropertyRootNode()
         {
             SLGPropertyGridEdit.CreateOrSyncScenePropertyRootNode();
         }
 
-        [MenuItem("MHT/SLG/同步场景动态对象组", false, 144)]
+        [MenuItem("SpaceTime/SLG/同步场景动态对象组", false, 144)]
         static void CreateOrSyncSLGSceneDynamicObjGroup()
         {
             SLGDynamicObjGroupEdit.CreateOrSyncSLGSceneDynamicObjGroup();
