@@ -33,7 +33,7 @@ namespace ST.SLG
             SLGDynamicObjGroupEdit.CreateOrSyncSLGSceneDynamicObjGroup();
         }
 
-        //[MenuItem("MHT/SLG/BottomLayer合并", false, 145)]
+        //[MenuItem("SpaceTime/SLG/BottomLayer合并", false, 145)]
         static void CombineAllRenderLayerBottomMap()
         {
             SLGRenderGridEdit.CombineAllRenderLayerBottomMap();
